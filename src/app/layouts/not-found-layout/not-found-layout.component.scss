@@ -1,0 +1,19 @@
+.container-not-found {
+  width: 100vw;
+  height: 100%;
+  overflow-y: hidden;
+  overflow-x: hidden !important;
+  margin: 0px;
+  padding: 0px;
+    p{
+      text-align: center;
+      font-size: 40px;
+      font-weight: 500;
+      color: rgb(250, 89, 89);
+    }
+    p:first-child {
+      text-align: center;
+      margin-top: 25%;
+      margin-bottom: 24px;
+    }
+}

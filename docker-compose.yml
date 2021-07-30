@@ -1,0 +1,20 @@
+version: '3.5'
+
+services:
+  smartkanvas-front:
+    container_name: smartkanvas-front
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        nowDate: $NOWDATE
+    volumes:
+      - './src:/src/app'
+      - /home/dev-smartkanvas/smartkanvas.com.br.crt:/etc/nginx/smartkanvas.com.br.crt
+      - /home/dev-smartkanvas/smartkanvas.com.br.key:/etc/nginx/smartkanvas.com.br.key
+    expose:
+      - '80'
+      - '443'
+    ports:
+      - '443:443'
+      - '80:80'

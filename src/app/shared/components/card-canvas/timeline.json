@@ -1,0 +1,22 @@
+{
+  "2021-06-08 10:23:11.681569": {
+      "Action": "Inseriu o modelo de Canvas",
+      "ActorID": "8b3b04b2-6ac0-49f3-a3a9-268539e3514d",
+      "ActorName": "Ericsson Yahoo"
+  },
+  "2021-06-08 10:24:04.900902": {
+      "Action": "Desativou o modelo de Canvas",
+      "ActorID": "1ec1ffc7-60bb-4642-b961-ea77877c6648",
+      "ActorName": "SmartKanvas Admin"
+  },
+  "2021-06-08 10:32:58.339496": {
+      "Action": "Reativou o modelo de Canvas",
+      "ActorID": "1ec1ffc7-60bb-4642-b961-ea77877c6648",
+      "ActorName": "SmartKanvas Admin"
+  },
+  "2021-06-08 10:33:12.300203": {
+      "Action": "Excluiu o modelo de Canvas",
+      "ActorID": "8b3b04b2-6ac0-49f3-a3a9-268539e3514d",
+      "ActorName": "Ericsson Yahoo"
+  }
+}

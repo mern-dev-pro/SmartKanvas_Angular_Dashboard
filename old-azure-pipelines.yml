@@ -1,0 +1,41 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- develop
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- task: CmdLine@2
+  inputs:
+    script: 'npm install -g firebase-tools'
+    workingDirectory: '$(Agent.ToolsDirectory)'
+  displayName: 'install firebase tools'
+
+- script: |
+    npm install
+    sed -i 's/#apikey#/'"$(apikey)"'/g' ./src/environments/environment.prod.ts
+    sed -i 's/#DBAPI#/'"$(DBAPI)"'/g' ./src/environments/environment.prod.ts
+    sed -i 's/#authDomain#/'"$(authDomain)"'/g' ./src/environments/environment.prod.ts
+    sed -i 's/#projectId#/'"$(projectId)"'/g' ./src/environments/environment.prod.ts
+    sed -i 's/#storageBucket#/'"$(storageBucket)"'/g' ./src/environments/environment.prod.ts
+    sed -i 's/#messagingSenderId#/'"$(messagingSenderId)"'/g' ./src/environments/environment.prod.ts
+    sed -i 's/#measurementId#/'"$(measurementId)"'/g' ./src/environments/environment.prod.ts
+    cp ./src/environments/environment.prod.ts ./src/environments/environment.ts
+    npm run build
+  displayName: 'npm install and build'
+
+- task: CmdLine@2
+  inputs:
+    script: 'firebase deploy --token "$(FIREBASE_TOKEN)" -m "$(Build.BuildNumber)"'
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
+  displayName: 'firebase publish -m "$(Build.BuildNumber)"'

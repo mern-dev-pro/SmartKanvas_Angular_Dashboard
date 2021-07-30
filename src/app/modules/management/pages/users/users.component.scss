@@ -1,0 +1,28 @@
+.content {
+  overflow-y: scroll;
+  height: calc(100vh - 74px);
+  margin: 0px 8px 0px 0px;
+}
+.canvas-templates {
+  app-card-canvas {
+    margin-bottom: 20px;
+  }
+}
+
+.cards-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.pending {
+  p {
+    margin-top: 5px;
+  }
+}
+
+@media (max-width: 689px) {
+  .cards-list {
+    justify-content: center;
+  }
+}

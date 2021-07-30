@@ -1,0 +1,210 @@
+$light-blue: #54a6dc;
+$container-width: 33.5rem;
+
+.container-select-type-account {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 100%;
+  // overflow-y: scroll;
+}
+
+#sign-up {
+  background-color: #fff;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.container-logo-smart-kanvas {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0;
+  padding-top: 1rem;
+}
+
+.container-logo-smart-kanvas img {
+  width: 3.5rem;
+  height: 3.5rem;
+  cursor: pointer;
+}
+
+.container-logo-smart-kanvas span {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #333;
+  text-align: center;
+  margin: 0.5rem 0 0 0;
+}
+
+.enter-smartkanvas {
+  color: #333;
+  font-size: 1.333rem;
+  font-weight: 500;
+  margin: 2.5rem 0 1.5rem 0;
+  text-align: center;
+}
+
+.container-btn-social {
+  width: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container-btn-social span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  text-align: center;
+
+  width: 100%;
+  border: 1px solid $light-blue;
+  margin: 0 0 1.5rem 0;
+  padding: 1rem;
+
+  font-size: 1.07rem;
+  font-weight: 400;
+  color: $light-blue;
+  transition: background 0.3s;
+
+  cursor: pointer;
+}
+
+.container-btn-social span:hover {
+  background: #f1f1f1;
+  cursor: pointer;
+}
+
+.container-btn-social img {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-right: 1.5rem;
+}
+
+.container-input {
+  width: $container-width;
+  max-width: 100%;
+  .field-with-help {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    button {
+      width: initial;
+      height: initial;
+      margin-left: 10px;
+    }
+  }
+  .emailsCoWorkers-label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+
+    button {
+      width: initial;
+      height: initial;
+      margin-left: 10px;
+      margin-bottom: 0;
+    }
+  }
+  mat-form-field {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+    height: 3.25rem;
+    margin-bottom: 1rem;
+    // margin-top: 1rem;
+    &:not([disabled]) {
+      background-color: $light-blue;
+
+      &[mat-icon-button],
+      &[mat-stroked-button] {
+        background-color: initial;
+      }
+    }
+
+    &.next {
+      max-width: 22rem;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+  }
+}
+
+#emailAccount {
+  .container-input {
+    width: 22rem;
+  }
+}
+
+.container-passwords {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: $container-width;
+  max-width: 100%;
+}
+
+.container-passwords mat-form-field:first-child {
+  margin-right: 1rem;
+  width: calc(50% - 1rem);
+}
+.container-passwords mat-form-field {
+  width: 50%;
+}
+
+.info-works-space {
+  font-size: 0.75rem;
+  color: #9b9999;
+}
+
+.container-services-terms {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: $container-width;
+  margin-top: 1rem;
+}
+
+.container-services-terms mat-slide-toggle {
+  margin-right: 1rem;
+}
+
+.container-services-terms > p {
+  text-align: left;
+  margin-top: 1rem;
+}
+
+.container-services-terms > p span {
+  color: $light-blue;
+}
+
+.mat-horizontal-stepper-header-container {
+  max-width: $container-width;
+  margin: 0 auto;
+}
+
+#emailAccount {
+  button {
+    margin-top: 1rem;
+  }
+}
+
+strong {
+  color: #333;
+}

@@ -1,0 +1,30 @@
+@import "~src/styles/variables.scss";
+.confirm-dialog {
+  width: 600px;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  p {
+    font-size: 16px;
+    color: $dark-gray2;
+    line-height: 1.2;
+    margin: 0 0 0 15px;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    button {
+      width: 140px;
+      height: 40px;
+      outline: none;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .btn-close {
+      margin-right: 20px;
+    }
+  }
+}

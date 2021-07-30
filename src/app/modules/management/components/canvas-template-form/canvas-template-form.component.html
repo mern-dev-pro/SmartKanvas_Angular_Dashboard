@@ -1,0 +1,46 @@
+<form [formGroup]="canvasTemplateForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline">
+    <mat-label>Título</mat-label>
+    <input matInput formControlName="Title"  />
+    <mat-error
+      *ngIf="!canvasTemplateForm.get('Title').valid &&
+      canvasTemplateForm.get('Title').touched">
+      Campo obrigatório
+    </mat-error>
+  </mat-form-field>
+    <div class="field-with-help">
+      <mat-form-field appearance="outline">
+        <mat-label>
+          Descrição
+        </mat-label>
+        <textarea matInput rows="5" formControlName="Description"></textarea>
+        <mat-error
+          *ngIf="!canvasTemplateForm.get('Description').valid &&
+          canvasTemplateForm.get('Description').touched">
+          Campo obrigatório
+        </mat-error>
+      </mat-form-field>
+      <button
+        class="help-button"
+        mat-icon-button
+        matSuffix
+        matTooltip="Qualquer alteração feita é salva automaticamente"
+        matTooltipClass="tooltip"
+        matTooltipPosition="right"
+      >
+        <img src="../../../../../assets/img/help.svg" alt="Ícone de Interrogação"/>
+      </button>
+    </div>
+  <div class="actions" fxLayout="row" fxLayoutAlign="end">
+    <button
+      title="Fecha o formulário"
+      type="button" (click)="closeModal()" class="btn-close" mat-raised-button
+    >Fechar</button>
+    <button
+      title="Salva o título e a descrição do modelo"
+      mat-raised-button [disabled]="canvasTemplateForm.invalid" class="btn-primary"
+    >
+      Salvar
+    </button>
+  </div>
+</form>

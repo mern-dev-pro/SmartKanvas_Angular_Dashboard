@@ -1,0 +1,21 @@
+{
+  "hosting": {
+    "public": "dist/smartkanvas-front/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "redirects": [ {
+    "source": "/linkedin",
+    "destination": "/linkedin/popup.html",
+    "type": 301
+    } ],
+    "rewrites": [
+      {
+        "source": "*",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

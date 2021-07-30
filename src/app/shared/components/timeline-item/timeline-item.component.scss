@@ -1,0 +1,55 @@
+@import "~src/styles/variables.scss";
+@import "~src/styles/mixins.scss";
+$timiline_half: (2.67rem / 2);
+.timeline-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  width: 50%;
+  position: relative;
+  &.left {
+    left: 0;
+
+    .day {
+      right: -$timiline_half;
+    }
+  }
+  .day {
+    @include circle(2.67rem);
+    position: absolute;
+    z-index: 1;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background-color: $light-blue;
+    color: $white;
+  }
+  &.right {
+    left: 50%;
+    flex-direction: row-reverse;
+    .day {
+      left: -$timiline_half;
+    }
+  }
+}
+
+@media (max-width: 580px) {
+  .timeline-item {
+    width: 80%;
+    &.right {
+      left: 0;
+      flex-direction: row;
+      .day {
+        left: initial;
+        right: -$timiline_half;
+      }
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .timeline-item {
+    width: 90%;
+  }
+}

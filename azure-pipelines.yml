@@ -1,0 +1,71 @@
+# Node.js with Angular
+# Build a Node.js project that uses Angular.
+
+trigger:
+- main
+- azure-pipelines
+
+variables:
+- name: deploymentPath
+  value: /var/www/Smartkanvas%20-%20Angular/
+- name: environmentFilePath
+  value: /var/www/Smartkanvas%20-%20Angular/.env
+- name: nowDate
+  value: $[pipeline.startTime]
+
+stages:
+- stage: Publish
+  pool:
+    vmImage: ubuntu-latest
+  displayName: Publish Stage
+  jobs:
+  - job: Publish
+    displayName: Zip and Publish
+    steps:
+    - task: ArchiveFiles@2
+      displayName: 'Archive files'
+      inputs:
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+        includeRootFolder: false
+        archiveType: zip
+        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+        replaceExistingArchive: true
+    - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+      displayName: Publish artifact
+      artifact: drop
+
+- stage: Deploy
+  displayName: Deploy Stage
+  jobs:  
+  - deployment: VMDeploy
+    displayName: Web
+    environment:
+      name: vmubuntu1-dev
+      resourceType: VirtualMachine
+      resourceName: vmubuntu1-dev 
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: rm -r $(deploymentPath)*
+            name: clear
+            displayName: Clear destination directory
+          - script: |
+              sudo apt install unzip
+              unzip  -d $(deploymentPath) -o $(Build.BuildId).zip
+            name: unzip
+            displayName: Unzip files
+            workingDirectory: ../drop/
+          - script: |
+              touch $(environmentFilePath)
+              echo NOWDATE=$(nowDate) > $(environmentFilePath)
+            name: envfile
+            displayName: Create Environment File
+            workingDirectory: $(deploymentPath)
+          - script: |
+              sudo docker-compose down --rmi all
+              sudo docker-compose up --detach --build
+            name: dockercomposeup
+            displayName: Containers Up
+            workingDirectory: $(deploymentPath)
+            

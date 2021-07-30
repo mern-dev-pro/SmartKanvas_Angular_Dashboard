@@ -1,0 +1,367 @@
+<section id="sign-up">
+  <div class="container-logo-smart-kanvas">
+    <img src="../../../../../assets/img/logo-icon.svg" alt="" (click)="backToHome()">
+    <span>SmartKanvas</span>
+  </div>
+
+  <mat-horizontal-stepper labelPosition="bottom" linear  (selectionChange)="onChangeState($event)">
+    <mat-step label="Identificação" color="green" [completed]="emailAccount.valid">
+
+      <div class="container-select-type-account" id="emailAccount">
+        <span class="enter-smartkanvas">Como você gostaria de entrar no SmartKanvas?</span>
+        <div class="container-btn-social">
+          <span (click)="onSelectLoginProvider('google')">
+            <img src="../../../../../assets/img/logo-google.png" alt="logo google">
+            Usar o Google
+          </span>
+
+          <!-- <span (click)="onSelectLoginProvider('linkedin')">
+            <img src="../../../../../assets/img/logo-linkedin.png" alt="logo logo-linkedin">
+            Usar o Linkedin
+          </span> -->
+
+          <!-- <span (click)="onSelectLoginProvider('facebook')">
+            <img src="../../../../../assets/img/facebook-logo.png" alt="logo facebook">
+            Usar o Facebook
+          </span> -->
+          <p>OU</p>
+        </div>
+        <div class="container-input">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input
+              [formControl]="emailAccount"
+              type="email"
+              placeholder="Digite seu email"
+              name="email"
+              matInput
+            >
+          </mat-form-field>
+          <button
+            class="next"
+            mat-raised-button
+            color="primary"
+            matStepperNext
+            (click)="continueForPersonalData()"
+            [disabled]="emailAccount.invalid">
+              CONTINUAR
+          </button>
+        </div>
+      </div>
+    </mat-step>
+
+    <mat-step label="Espaço de Trabalho"
+      [completed]="createAccountForm.valid || createAccountSocialMediaForm.valid">
+      <!-- <div *ngIf="showPersonalData" class="container-select-type-account" [formGroup]="createAccountForm"> -->
+      <div *ngIf="showPersonalData" class="container-select-type-account" id="createAccountForm" [formGroup]="createAccountForm">
+        <!-- <div class="container-logo-smart-kanvas" >
+          <img src="../../../../../assets/img/logo-icon.svg" alt="" (click)="backToHome()">
+          <span>SmartKanvas</span>
+        </div> -->
+        <div class="container-input">
+
+
+          <mat-form-field appearance="outline">
+
+            <mat-label>
+              Nome
+
+            </mat-label>
+            <input
+              type="text"
+              placeholder="Digite seu nome"
+              name="nome"
+              matInput
+              hintLabel="Texto texto texto"
+              formControlName="name">
+
+          </mat-form-field>
+
+          <div class="container-passwords">
+            <mat-form-field appearance="outline">
+              <mat-label>Senha</mat-label>
+              <input
+                type="password"
+                placeholder="Digite seu senha"
+                name="password"
+                matInput
+                formControlName="password">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Confirme sua senha</mat-label>
+              <input
+                type="password"
+                placeholder="Digite novamente sua senha"
+                name="confirmPassword"
+                matInput
+                formControlName="confirmPassword">
+            </mat-form-field>
+          </div>
+
+          <div class="field-with-help">
+            <mat-form-field appearance="outline">
+              <mat-label>Espaço de trabalho</mat-label>
+              <input
+                type="text"
+                placeholder="Digite o nome do seu espaço de trabalho"
+                name="workSpaceName"
+                matInput
+                formControlName="workSpaceName">
+            </mat-form-field>
+
+            <button
+                mat-icon-button
+                matSuffix
+                matTooltip="Este será o nome do seu Espaço de Trabalho. Pode ser o nome
+                da sua empresa ou qualquer outro que sua equipe reconhcerá facilmente para ativar e entrar no SmartKanvas.
+                O Espaço de Trabalho deve ser exclusivo. Deve conter apenas caracteres, sem acentos e números."
+                aria-label="Texto de informação"
+                matTooltipClass="tooltip"
+                matTooltipPosition="right"
+              >
+                <img src="../../../../../assets/img/help.svg" alt="Ýcone de Interrogação"/>
+              </button>
+          </div>
+
+
+          <mat-form-field appearance="outline">
+            <mat-label>Tamanho do espaço de trabalho</mat-label>
+            <mat-select formControlName="workSpaceSize">
+              <mat-option *ngFor="let sizeWorkSpace of allSizeWorkspace" [value]="sizeWorkSpace.ID">{{sizeWorkSpace?.ClientSize | translate}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+
+          <button
+            class="next"
+            mat-raised-button
+            matStepperNext
+            color="primary"
+            (click)="continueForFinalRegisterForm()"
+            [disabled]="createAccountForm.invalid">
+              PRÓXIMO
+          </button>
+          <!-- <button
+            mat-stroked-button
+            color="primary"
+            matStepperPrevious
+            (click)="backStage(2)"
+          >
+            Voltar
+          </button> -->
+          <div class="container-services-terms">
+            <mat-slide-toggle color="primary" formControlName="useTerm">
+            </mat-slide-toggle>
+            <p>Concordo com os <span>Termos do Serviço, Política de Privacidade</span>
+              e de <span>Cookies.</span></p>
+          </div>
+
+        </div>
+      </div>
+
+      <div *ngIf="showSocialMediaData" class="container-select-type-account"
+      id="createAccountSocialMediaForm" [formGroup]="createAccountSocialMediaForm">
+
+        <div class="container-input">
+          <div class="field-with-help">
+            <mat-form-field appearance="outline">
+              <mat-label>Espaço de trabalho</mat-label>
+              <input
+                type="text"
+                placeholder="Digite o nome do seu espaço de trabalho"
+                name="workSpaceName"
+                matInput
+                formControlName="workSpaceName">
+            </mat-form-field>
+            <button
+                mat-icon-button
+                matSuffix
+                matTooltip="Este será o nome do seu Espaço de Trabalho. Pode ser o nome
+                da sua empresa ou qualquer outro que sua equipe reconhcerá facilmente para ativar e entrar no SmartKanvas.
+                O Espaço de Trabalho deve ser exclusivo. Deve conter apenas caracteres, sem acentos e números."
+                aria-label="Texto de informação"
+                matTooltipClass="tooltip"
+                matTooltipPosition="right"
+              >
+                <img src="../../../../../assets/img/help.svg" alt="Ýcone de Interrogação"/>
+              </button>
+          </div>
+          <mat-form-field appearance="outline">
+            <mat-label>Url do Espaço de trabalho</mat-label>
+            <input
+              type="text"
+              placeholder="Digite a url do seu espaço de trabalho"
+              name="workSpaceUrl"
+              matInput
+              formControlName="workSpaceUrl">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Tamanho do espaço de trabalho</mat-label>
+            <mat-select formControlName="workSpaceSize">
+              <mat-option *ngFor="let sizeWorkSpace of allSizeWorkspace" [value]="sizeWorkSpace.ID">{{sizeWorkSpace?.ClientSize}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+          <button
+            class="next"
+            mat-raised-button
+            color="primary"
+            (click)="continueForFinalRegisterForm()">PRÓXIMO</button>
+            <!-- <button
+              mat-stroked-button
+              matStepperPrevious
+              color="primary"
+              (click)="backStage(2, true)"
+            >
+              Voltar
+            </button> -->
+          <div class="container-services-terms">
+            <mat-slide-toggle color="primary">
+            </mat-slide-toggle>
+            <p>Concordo com os <span>Termos do Serviço, Política de Privacidade</span>
+              e de <span>Cookies.</span></p>
+          </div>
+
+        </div>
+
+      </div>
+    </mat-step>
+
+    <mat-step label="Criar Conta" [completed]="finalRegisterForm.valid">
+      <!-- <div *ngIf="showFinishAccount" class="container-select-type-account" [formGroup]="finalRegisterForm"> -->
+      <div *ngIf="showFinishAccount" class="container-select-type-account"
+      id="finalRegisterForm" [formGroup]="finalRegisterForm">
+        <!-- <div class="container-logo-smart-kanvas">
+          <img src="../../../../../assets/img/logo-icon.svg" alt="" (click)="backToHome()">
+          <span>SmartKanvas</span>
+        </div> -->
+        <div class="container-input">
+          <div class="field-with-help">
+            <mat-form-field appearance="outline">
+              <mat-label>Selecione um tipo</mat-label>
+              <mat-select
+                formControlName="workSpaceType">
+
+                <mat-option
+                *ngFor="let workSpaceType of allClientType"
+
+                [value]="workSpaceType?.ID">
+                {{ workSpaceType?.ClientType | translate }}
+
+                </mat-option>
+
+              </mat-select>
+            </mat-form-field>
+
+            <button
+              mat-icon-button
+              matSuffix
+              matTooltip="Estamos solicitando essas informações para ajudar a direcionar melhorias para
+              o produto e suas ofertas futuras."
+              matTooltipClass="tooltip"
+              matTooltipPosition="right"
+            >
+              <img src="../../../../../assets/img/help.svg" alt="Ýcone de Interrogação"/>
+            </button>
+          </div>
+
+          <div class="field-with-help">
+            <mat-form-field appearance="outline">
+              <mat-label>Selecione uma área</mat-label>
+              <mat-select formControlName="areaActuation">
+                <mat-option
+                  *ngFor="let areaActuation of allBusinessArea"
+                  value="{{ areaActuation?.ID }}">
+
+            {{ areaActuation?.BusinessArea | translate}}
+
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button
+              mat-icon-button
+              matSuffix
+              matTooltip="Essas informações nos ajudarão a definir prioridades no roadmap do SmartKanvas."
+              matTooltipClass="tooltip"
+              matTooltipPosition="right"
+            >
+              <img src="../../../../../assets/img/help.svg" alt="Ýcone de Interrogação"/>
+            </button>
+          </div>
+
+
+          <div formArrayName="emailsCoWorkers">
+            <p class="emailsCoWorkers-label">
+              <strong>Digite os emails de seus colaboradores</strong>
+              <button
+                mat-icon-button
+                matSuffix
+                matTooltip="Neste momento, se você estiver interessado, pode convidar 3 membros de
+                sua equipe para experimentar o SmartKanvas. No entanto, após concluir o processo de
+                criação do Espaço de Trabalho, você poderá convidar outras pessoas acessando a
+                opção Usuários no menu principal do SmartKanvas."
+                matTooltipClass="tooltip"
+                matTooltipPosition="right"
+              >
+                <img src="../../../../../assets/img/help.svg" alt="Ýcone de Interrogação"/>
+              </button>
+            </p>
+            <div *ngFor="let workerEmail of finalRegisterForm.get('emailsCoWorkers').controls; let i = index">
+              <div [formGroupName]="i">
+                <mat-form-field appearance="outline">
+                  <mat-label>Email</mat-label>
+                  <input
+                    formControlName="email"
+                    type="email"
+                    placeholder="Digite seu email"
+                    name="email"
+                    matInput>
+                </mat-form-field>
+
+              </div>
+            </div>
+          </div>
+
+          <button
+            class="next"
+            *ngIf="!createAccountProvider"
+            mat-raised-button
+            color="primary"
+            (click)="createUser()"
+            [disabled]="finalRegisterForm.invalid"
+          >
+            CRIAR CONTA
+          </button>
+
+          <button
+            *ngIf="createAccountProvider"
+            mat-raised-button
+            color="primary"
+            (click)="createAccountWithGoogle()"
+            [disabled]="finalRegisterForm.invalid"
+          >
+            CRIAR CONTA
+          </button>
+
+          <!-- <button
+            mat-stroked-button
+            color="primary"
+            matStepperPrevious
+            (click)="backStage(3)"
+          >
+            Voltar
+          </button> -->
+
+        </div>
+
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</section>
+
+
+

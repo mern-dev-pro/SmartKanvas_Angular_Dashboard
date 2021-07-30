@@ -1,0 +1,38 @@
+<app-modal [titulo]="'Novo usuário'" (onClose)="close()">
+    <div body class="full-width">
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <label for='file' fxLayout="row" fxLayoutAlign="center center" *ngIf="!cardImageBase64">
+          <mat-icon>file_upload</mat-icon>
+        </label>
+        <input id='file' type='file' (change)="fileChangeEvent($event)" >
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <img [src]="cardImageBase64" *ngIf="cardImageBase64" class="img-selected"/>
+        </div>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="center center" class="full-width">
+        <mat-form-field appearance="outline">
+          <mat-label>Nome</mat-label>
+          <input type="text" placeholder="Digite seu email" name="email" matInput>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input type="text" placeholder="Digite seu email" name="email" matInput>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Profile</mat-label>
+          <input type="text" placeholder="Digite seu email" name="email" matInput>
+        </mat-form-field>
+      </div>
+    </div>
+    <div footer>
+      <div>
+        <button mat-raised-button class="btn-cancel" (click)="close()">
+          CANCELAR
+        </button>
+        <button mat-raised-button class="btn-save">
+          CONFIRMAR
+        </button>
+      </div>
+    </div>
+
+</app-modal>

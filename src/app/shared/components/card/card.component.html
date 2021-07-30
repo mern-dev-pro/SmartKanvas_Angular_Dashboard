@@ -1,0 +1,25 @@
+<mat-card class="card" fxLayout="column">
+  <mat-toolbar fxLayout="row" fxLayoutAlign="flex-end" color="accent">
+    <button mat-icon-button aria-label="Menu Button"
+      [matMenuTriggerFor]="menu">
+      <mat-icon>more_horiz</mat-icon>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Edit</button>
+        <button mat-menu-item>Inactive</button>
+        <button mat-menu-item>Delete</button>
+      </mat-menu>
+    </button>
+  </mat-toolbar>
+  <div class="card-body" fxLayoutAlign="row" fxLayoutGap="15px">
+    <img class="mat-card-image"
+      mat-card-sm-image [src]="'../../../assets/images/bill-gates.jpeg'" />
+    <mat-card-content>
+      <p><strong>Bill Gates</strong></p>
+      <p>bill-gates@email.com/p>
+      <p>Admin</p>
+    </mat-card-content>
+  </div>
+  <mat-card-actions>
+    <button mat-raised-button class="btn-warn">Inactive</button>
+  </mat-card-actions>
+</mat-card>

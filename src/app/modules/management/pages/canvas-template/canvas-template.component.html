@@ -1,0 +1,106 @@
+
+<header
+  class="panel-header" fxLayout="row" fxLayout.xs="row wrap"
+  fxLayoutAlign="space-between center" fxLayoutAlign.xs="start center">
+  <div class="left" fxLayout="row">
+    <div fxLayout="row" class="container-back" fxLayoutAlign="start center" >
+      <mat-icon
+        title="Volta para a página anterior" (click)="backToList()"
+        >arrow_back
+      </mat-icon>
+      <h2>Configurar modelo de canvas - {{canvasTemplate ? canvasTemplate.Title : 'Novo modelo de canvas'}}</h2>
+      <mat-icon (click)="openModal()" class="edit-icon"
+        title="Altera o título e descrição do modelo."
+      >
+        edit
+      </mat-icon>
+    </div>
+  </div>
+  <div class="right" fxLayout="row" fxLayoutAlign="end center">
+    <strong>Auto save on</strong>
+    <button
+      class="help-button"
+      mat-icon-button
+      matSuffix
+      matTooltip="Qualquer alteração feita é salva automaticamente"
+      matTooltipClass="tooltip"
+      matTooltipPosition="right"
+    >
+      <img src="../../../../../assets/img/help.svg" alt="Ícone de Interrogação"/>
+    </button>
+  </div>
+</header>
+
+<section class="canvas-template">
+  <div class="box">
+
+      <ejs-dashboardlayout id='defaultLayout'
+        [columns]="5" #defaultLayout [cellSpacing]='[2,2]' [allowResizing]="true"
+      >
+        <div id="one" class="e-panel" data-row="0" data-col="0" data-sizeX="1" data-sizeY="1">
+          <span id="close" class="e-template-icon e-clear-icon"></span>
+          <div class="e-panel-container">
+              <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center">
+                <mat-icon aria-label="ícone de relógio">schedule</mat-icon>
+                <div class="menu">
+                  <button
+                    mat-icon-button [matMenuTriggerFor]="menu"
+                    aria-label="Menu Button"
+                    title="Editar configurações da box"
+                    ><mat-icon>more_horiz</mat-icon>
+                  </button>
+                  <mat-menu #menu [yPosition]="'below'" >
+                    <button mat-menu-item>Editar</button>
+                    <button mat-menu-item>Mudar box</button>
+                    <button mat-menu-item>Excluir</button>
+                  </mat-menu>
+                </div>
+              </mat-toolbar>
+              <div class="text-align">0</div>
+          </div>
+        </div>
+        <div id="two" class="e-panel" data-row="1" data-col="0" data-sizeX="1" data-sizeY="2">
+            <span id="close" class="e-template-icon e-clear-icon"></span>
+            <div class="e-panel-container">
+                <div class="text-align">1</div>
+            </div>
+        </div>
+        <div id="three" class="e-panel" data-row="0" data-col="1" data-sizeX="3" data-sizeY="2">
+            <span id="close" class="e-template-icon e-clear-icon"></span>
+            <div class="e-panel-container">
+                <div class="text-align">2</div>
+            </div>
+        </div>
+        <div id="four" class="e-panel" data-row="2" data-col="1" data-sizeX="1" data-sizeY="1">
+            <span id="close" class="e-template-icon e-clear-icon"></span>
+            <div class="e-panel-container">
+                <div class="text-align">3</div>
+            </div>
+        </div>
+        <div id="five" class="e-panel" data-row="2" data-col="2" data-sizeX="2" data-sizeY="1">
+            <span id="close" class="e-template-icon e-clear-icon"></span>
+            <div class="e-panel-container">
+                <div class="text-align">4</div>
+            </div>
+        </div>
+        <div id="six" class="e-panel" data-row="0" data-col="3" data-sizeX="1" data-sizeY="1">
+            <span id="close" class="e-template-icon e-clear-icon"></span>
+            <div class="e-panel-container">
+                <div class="text-align">5</div>
+            </div>
+        </div>
+        <div id="seven" class="e-panel" data-row="1" data-col="3" data-sizeX="1" data-sizeY="1">
+            <span id="close" class="e-template-icon e-clear-icon"></span>
+            <div class="e-panel-container">
+                <div class="text-align">6</div>
+            </div>
+        </div>
+        <div id="eight" class="e-panel" data-row="0" data-col="4" data-sizeX="1" data-sizeY="3">
+            <span id="close" class="e-template-icon e-clear-icon"></span>
+            <div class="e-panel-container">
+                <div class="text-align">7</div>
+            </div>
+        </div>
+    </ejs-dashboardlayout>
+  </div>
+</section>

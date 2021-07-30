@@ -1,0 +1,91 @@
+<mat-toolbar class="toolbar">
+  <div class="full-width" fxLayout="row" fxLayoutAlign="start center">
+    <div
+      class="btns-menu-op-cl"
+      fxLayoutAlign="center center"
+      *ngIf="isLogoOrMenu === true"
+      style="height: 100%;"
+    >
+
+    <button
+      *ngIf="isDesktopDevice"
+      [@btnMenuOp]="btnMenuState"
+      mat-icon-button
+      (click)="alterStateMenu('btnMenuClose')"
+      class="menu"
+    >
+      <mat-icon class="material-icons-round icon-menu-header">
+        menu_open
+      </mat-icon>
+    </button>
+    <button
+      *ngIf="isDesktopDevice"
+      [@btnMenuCl]="btnMenuState"
+      mat-icon-button
+      (click)="alterStateMenu('btnMenuOpen')"
+      class="menu"
+    >
+      <mat-icon class="material-icons-round icon-menu-header">
+        menu
+      </mat-icon>
+    </button>
+
+    <button
+      *ngIf="isMobile || isTablet"
+      [@btnMenuCl]="btnMenuState"
+      mat-icon-button
+      (click)="alterStateMenu('btnMenuOpen')"
+      class="menu"
+    >
+      <mat-icon class="material-icons-round icon-menu-header">
+        menu
+      </mat-icon>
+    </button>
+    <button
+      *ngIf="isMobile || isTablet"
+      [@btnMenuOp]="btnMenuState"
+      mat-icon-button
+      (click)="alterStateMenu('btnMenuClose')"
+      class="menu"
+    >
+      <mat-icon class="material-icons-round icon-menu-header">
+        menu
+      </mat-icon>
+    </button>
+
+  </div>
+  <img src="../../../assets/img/logo-icon.svg" >
+  <span class="divider-horizontal" ></span>
+    <div class="search-container-input" fxHide.xs>
+      <mat-icon matPrefix>search</mat-icon>
+      <input matInput type="text" placeholder="Pesquise por qualquer coisa">
+    </div>
+    <div *ngIf="userLogged" class="full-width" fxLayout="row" fxLayoutAlign="end center">
+      <button mat-icon-button class="example-icon">
+        <mat-icon matBadge="15" matBadgeColor="warn">notifications</mat-icon>
+      </button>
+      <div *ngIf="userLogged"  class="container-header-avatar" fxLayout="row" fxLayoutAlign="center center">
+        <img *ngIf="userLogged?.Photo" src="../../../assets/img/avatar.png" [matMenuTriggerFor]="menu">
+        <div *ngIf="!userLogged?.Photo" class="not-photo" [matMenuTriggerFor]="menu">{{ initialLetters }}</div>
+        <div fxHide.xs fxLayout="column" fxLayoutAlign="center space-around" class="name-user">
+          <p>Olá, {{ userLogged?.UserName }}</p>
+          <p>Administrador</p>
+        </div>
+        <button mat-icon-button class="name-user" [matMenuTriggerFor]="menu">
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+</mat-toolbar>
+<div class="gradient"></div>
+
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="singOut()">
+    <mat-icon>logout</mat-icon>
+    <span>Sair</span>
+  </button>
+</mat-menu>

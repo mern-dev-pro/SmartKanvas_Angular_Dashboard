@@ -1,0 +1,444 @@
+.container-auth {
+  width: 100vw;
+  height: 100% !important;
+  margin: 0px;
+  padding: 0px;
+  .container-card {
+    margin: 0px;
+    padding: 0px;
+    width: 50%;
+    height: 100%;
+
+    .card-login {
+      height: 100% !important;
+      width: 100%;
+      img {
+        margin: 2rem 32px 2rem 32px !important;
+        height: 50px;
+      }
+      .container-input {
+        width: 100%;
+        padding: 32px 32px 24px 32px !important;
+        mat-form-field {
+          width: 100%;
+        }
+    
+
+        .container-create-account {
+          width: 100%;
+          margin: 24px 0px 16px 0px;
+          span {
+            font-size: 18px;
+            margin: 0px 4px 0px 0px;
+          }
+        }
+        .btn-forgot-pass {
+          font-size: 18px;
+          color: #3f5ca7;
+          cursor: pointer;
+          font-weight: 500;
+          text-decoration: underline;
+        }
+
+        .btn-forgot-pass:hover {
+          color: #4778ff;
+          transform: color 2s;
+          cursor: pointer;
+        }
+        .btn-submit {
+          width:100%;
+          height: 46px !important;
+          margin: 32px 0px 24px 0px;
+          background: rgb(64,97,171);
+          background: linear-gradient(273deg, rgba(64,97,171,1) 0%, rgba(64,97,171,1) 35%, rgba(81,158,212,1) 100%);
+          font-size: 22px;
+        }
+        .btn-facebook {
+          width:100%;
+          height: 46px !important;
+          background: rgb(64,97,171);
+          color: #fff;
+          margin: 32px 32px 0px 32px;
+          border-radius: 8px;
+          div {
+            width:100% !important;
+            height: 100%;
+            mat-icon {
+              font-size: 30px;
+              margin: 0px 32px 12px 0px;
+
+            }
+            span {
+              font-weight: 600;
+              font-size: 20px;
+            }
+          }
+        }
+        .btn-google {
+          width:100%;
+          height: 46px !important;
+          margin: 32px 0px 24px 0px;
+          background: #e87376;
+          color: #fff;
+          margin: 32px 32px 0px 32px;
+          border-radius: 8px;
+          div {
+            width:100% !important;
+            height: 100%;
+            mat-icon {
+              font-size: 30px;
+              margin: 0px 32px 12px 0px;
+
+            }
+            span {
+              font-weight: 600;
+              font-size: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .container-img {
+    margin: 0px;
+    padding: 0px;
+    height: 100vh;
+    width: 100%;
+    background: url('../../../../../assets/img/background.svg') no-repeat center;
+  }
+
+  .container-background {
+    width: 50%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    z-index: 99;
+    background: url('../../../../../assets/img/login-img.png') no-repeat center;
+    .img-top-login {
+      position: absolute;
+      top: -30px;
+      right: 70px;
+    }
+    .img-bottom-login {
+      position: absolute;
+      bottom: 0px;
+      left: 55%;
+    }
+  }
+}
+
+.container-card-xs {
+  margin: 0px;
+  padding: 0px;
+  height: 100% !important;
+  width: 100% !important;
+  .card-login {
+      height: 100% !important;
+      width: 100% !important;
+      overflow-x: scroll;
+      img {
+        margin: 32px 0px 56px 0px !important;
+        height: 50px;
+      }
+      .container-input {
+        width: 100% !important;
+        padding: 16px 0px 16px 0px !important;
+      }
+  }
+}
+.card-login-xs {
+  height: 100% !important;
+  width: 100% !important;
+
+}
+
+
+.container-img-gt-sm {
+  margin: 0px;
+  padding: 0px;
+
+  img {
+    background-size: cover;
+    margin: 0px;
+    padding: 0px;
+  }
+}
+mat-checkbox {
+  font-size: 19px;
+}
+
+.container-social-xs {
+  display: none !important;
+  width: 100%;
+  .btn-facebook {
+    width:100%;
+    height: 46px !important;
+    background: rgb(64,97,171);
+    color: #fff;
+    margin: 0px 0px 16px 0px;
+    border-radius: 8px;
+    div {
+      width:100% !important;
+      height: 100%;
+      mat-icon {
+        font-size: 30px;
+        margin: 0px 32px 12px 0px;
+
+      }
+      span {
+        font-weight: 600;
+        font-size: 20px;
+        padding: 0px 8px 0px 8px;
+      }
+    }
+  }
+  .btn-google {
+    width:100%;
+    height: 46px !important;
+    background: #e87376;
+    color: #fff;
+    margin: 0px 0px 16px 0px;
+    border-radius: 8px;
+    div {
+      width:100% !important;
+      height: 100%;
+      mat-icon {
+        font-size: 30px;
+        margin: 0px 32px 12px 0px;
+        padding: 0px 8px 0px 8px;
+      }
+      span {
+        font-weight: 600;
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+
+.card-login-gt-sm {
+  height: 100% !important;
+  width: 100% !important;
+  overflow-x: scroll;
+  img {
+    margin: 2rem 32px 2rem 32px !important;
+    height: 50px;
+  }
+  .container-input {
+    width: 100%;
+    padding: 0px 128px 0px 128px !important;
+    .container-create-account {
+      width: 100%;
+      margin: 0px 0px 16px 0px;
+      span {
+        font-size: 18px;
+        margin: 0px 4px 0px 0px;
+      }
+    }
+    .btn-forgot-pass {
+      font-size: 18px;
+      color: #3f5ca7;
+      cursor: pointer;
+      font-weight: 500;
+      text-decoration: underline;
+    }
+
+    .btn-forgot-pass:hover {
+      color: #4778ff;
+      transform: color 2s;
+      cursor: pointer;
+    }
+    .btn-submit {
+      width:100%;
+      height: 46px !important;
+      margin: 32px 0px 24px 0px;
+      background: rgb(64,97,171);
+      background: linear-gradient(273deg, rgba(64,97,171,1) 0%, rgba(64,97,171,1) 35%, rgba(81,158,212,1) 100%);
+      font-size: 22px;
+    }
+    .btn-facebook {
+      width:100%;
+      height: 46px !important;
+      background: rgb(64,97,171);
+      color: #fff;
+      margin: 32px 32px 0px 32px;
+      border-radius: 8px;
+      div {
+        width:100% !important;
+        height: 100%;
+        mat-icon {
+          font-size: 30px;
+          margin: 0px 32px 12px 0px;
+
+        }
+        span {
+          font-weight: 600;
+          font-size: 20px;
+        }
+      }
+    }
+    .btn-google {
+      width:100%;
+      height: 46px !important;
+      margin: 32px 0px 24px 0px;
+      background: #e87376;
+      color: #fff;
+      margin: 32px 32px 0px 32px;
+      border-radius: 8px;
+      div {
+        width:100% !important;
+        height: 100%;
+        mat-icon {
+          font-size: 30px;
+          margin: 0px 32px 12px 0px;
+
+        }
+        span {
+          font-weight: 600;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: 599px) {
+  .container-social-xs {
+    display: block !important;
+  }
+}
+
+
+@media(max-width: 667px) {
+
+  .container-auth{
+    width: 100% !important;
+    height: 100vh;
+    display: flex;
+    .card-login {
+      flex: 1;
+      width: 100%!important;
+      height: 100vh;
+      overflow-x: scroll;
+    }
+  }
+  .container-card {
+    width: 100%!important;
+  }
+  .container-input {
+    padding: 32px !important;
+  }
+  .container-background {
+    display: none !important;
+    // visibility: hidden;
+  }
+
+}
+
+@media(max-width: 736px) {
+  .container-auth{
+    width: 100% !important;
+    height: 100vh;
+    display: flex;
+    .card-login {
+      flex: 1;
+      width: 100%!important;
+      height: 100vh;
+      overflow-x: scroll;
+    }
+  }
+  .container-card {
+    width: 100%!important;
+  }
+  .container-input {
+    padding: 32px !important;
+  }
+  .container-background {
+    display: none !important;
+    // visibility: hidden;
+  }
+  .container-social-xs {
+    // display: none !important;
+  }
+}
+
+@media(max-width: 823px) {
+  .container-auth{
+    width: 100% !important;
+    height: 100vh;
+    display: flex;
+    .card-login {
+      flex: 1;
+      width: 100%!important;
+      height: 100vh;
+      overflow-x: scroll;
+    }
+  }
+  .container-card {
+    width: 100%!important;
+  }
+  .container-input {
+    padding: 32px !important;
+  }
+  .container-background {
+    display: none !important;
+    // visibility: hidden;
+  }
+  .container-social-xs {
+    display: block;
+  }
+}
+
+@media(width: 768px) {
+  .container-auth{
+    width: 100% !important;
+    height: 100vh;
+    display: flex;
+    .card-login {
+      flex: 1;
+      width: 100%!important;
+      height: 100vh;
+      overflow-x: scroll;
+    }
+  }
+  .container-card {
+    width: 100%!important;
+  }
+  .container-input {
+    padding: 32px !important;
+  }
+  .container-background {
+    display: none !important;
+    // visibility: hidden;
+  }
+  .container-social-xs {
+    display: none !important;
+  }
+}
+
+@media(width: 1024px) {
+  .container-auth{
+    width: 100% !important;
+    height: 100vh;
+    display: flex;
+    .card-login {
+      flex: 1;
+      width: 100%!important;
+      height: 100vh;
+      overflow-x: scroll;
+    }
+  }
+  .container-card {
+    width: 100%!important;
+  }
+  .container-input {
+    padding: 32px !important;
+  }
+  .container-background {
+    display: none !important;
+    // visibility: hidden;
+  }
+  .container-social-xs {
+    display: none !important;
+  }
+}

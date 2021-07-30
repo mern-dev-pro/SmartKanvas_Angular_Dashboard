@@ -1,0 +1,32 @@
+<div class="timeline">
+  <header
+    class="panel-header" fxLayout="row" fxLayout.xs="row wrap"
+    fxLayoutAlign="space-between center" fxLayoutAlign.xs="start center">
+    <div class="left" fxLayout="row">
+      <div fxLayout="row" class="container-back" fxLayoutAlign="start center" >
+        <mat-icon (click)="backToList()">arrow_back</mat-icon>
+        <h2>Linha do tempo - {{data.canvasTitle}}</h2>
+
+      </div>
+    </div>
+
+  </header>
+  <div class="months-container"  matDialogContent>
+    <div class="months">
+      <div class="month-logs" *ngFor="let month of monthsLogs">
+        <div class="month-circle" fxLayout="column" fxLayoutAlign="center center">
+          <p>{{month.month}}</p>
+          <p>{{month.year}}</p>
+        </div>
+
+        <app-timeline-item
+          *ngFor="let log of month.logs; index as i"
+          [item]="log"
+          [reverse]="(i+1) % 2 === 0"
+        >
+        </app-timeline-item>
+      </div>
+    </div>
+  </div>
+
+</div>

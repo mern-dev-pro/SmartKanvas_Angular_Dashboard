@@ -1,0 +1,56 @@
+@import "~@angular/material/theming";
+@import "~@angular/material/theming";
+
+@include mat-core();
+
+$mat-indigo: (
+  A500: #3f5ca7,
+  contrast: (
+    A500: #fff,
+  ),
+);
+$smartkanvas-front-primary: mat-palette($mat-indigo, A500);
+$smartkanvas-front-accent: mat-palette($mat-pink, A200, A100, A400);
+
+$smartkanvas-front-warn: mat-palette($mat-red);
+
+$smartkanvas-front-theme: mat-light-theme(
+  (
+    color: (
+      primary: $smartkanvas-front-primary,
+      accent: $smartkanvas-front-accent,
+      warn: $smartkanvas-front-warn,
+    ),
+  )
+);
+
+@include angular-material-theme($smartkanvas-front-theme);
+.mat-form-field-flex > .mat-form-field-infix {
+  padding: 0.75em 0px !important;
+}
+.mat-form-field-label-wrapper {
+  top: -1.5em;
+}
+
+.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float
+  .mat-form-field-label {
+  transform: translateY(-1.1em) scale(0.75);
+  width: 133.33333%;
+}
+
+.mat-stepper-horizontal {
+  & > .mat-horizontal-content-container {
+    overflow: hidden;
+    padding: 0 10px 10px 10px;
+  }
+}
+
+.mat-pseudo-checkbox-checked,
+.mat-pseudo-checkbox-indeterminate,
+.mat-accent .mat-pseudo-checkbox-checked,
+.mat-accent .mat-pseudo-checkbox-indeterminate {
+  background: #3f5ca7;
+}
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  color: #3f5ca7;
+}

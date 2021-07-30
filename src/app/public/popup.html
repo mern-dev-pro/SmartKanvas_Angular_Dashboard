@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linkedin</title>
+
+  <script>
+    function queryStringToJSON(qs) {
+      qs = qs || location.search.slice(1);
+
+      var pairs = qs.split('&');
+      var result = {};
+      pairs.forEach(function(p) {
+          var pair = p.split('=');
+          var key = pair[0];
+          var value = decodeURIComponent(pair[1] || '');
+
+          if( result[key] ) {
+              if( Object.prototype.toString.call( result[key] ) === '[object Array]' ) {
+                  result[key].push( value );
+              } else {
+                  result[key] = [ result[key], value ];
+              }
+          } else {
+              result[key] = value;
+          }
+      });
+
+      return JSON.parse(JSON.stringify(result));
+    };
+
+    const params = window.location.search;
+    console.log(params);
+    
+    window.opener.postMessage(queryStringToJSON(params));
+    window.close();
+  </script>
+
+</head>
+<body>
+  <p>Por favor espera caralho!</p>
+</body>
+</html>

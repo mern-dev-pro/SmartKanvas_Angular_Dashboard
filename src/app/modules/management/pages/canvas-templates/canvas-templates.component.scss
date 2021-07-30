@@ -1,0 +1,26 @@
+@import "~src/styles/variables.scss";
+
+.content {
+  overflow-y: scroll;
+  height: calc(100vh - 74px);
+  margin: 0px 8px 0px 0px;
+}
+
+.canvas-templates {
+  app-card-canvas {
+    margin-bottom: 20px;
+  }
+}
+
+.btn-icon {
+  background-color: $pink;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  mat-icon {
+    width: auto;
+    height: auto;
+    font-size: 36px;
+    margin-top: -6px;
+  }
+}

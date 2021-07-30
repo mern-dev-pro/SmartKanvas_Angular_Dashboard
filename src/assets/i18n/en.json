@@ -1,0 +1,30 @@
+{
+  "appTitle": "SmartKanvas",
+  "appText": "A melhor ferramenta para gestão!",
+  "clienteSize": {
+    "qtdMembers": {
+      "sixTen": "6-10 members",
+      "overTen": "over 10 members",
+      "twoFive": "2-5 members",
+      "one": "1 member"
+    }
+  },
+  "businessArea": {
+    "agriBuisiness": "Agribusiness",
+    "buisness": "Business",
+    "government": "State, federal or local government",
+    "industry": "Industry",
+    "juciary": "Judiciary",
+    "marketing": "Marketing",
+    "cityHall": "City hall",
+    "service": "Service",
+    "technology": "Information Technology",
+    "other": "Other"
+  },
+  "clientType": {
+    "startup": "Startup",
+    "publicOrPrivate": "Public or private company",
+    "consultancy": "Consultancy",
+    "other": "Other"
+  }
+}

@@ -1,0 +1,77 @@
+@import "~src/styles/variables.scss";
+
+.card-canvas {
+  width: 280px;
+  height: 212px;
+  padding: 0;
+  -webkit-box-shadow: 3px 3px 5px rgb(0 0 0 / 35%);
+  box-shadow: 3px 3px 5px rgb(0 0 0 / 35%);
+  border-radius: 0;
+}
+
+.card-canvas mat-toolbar {
+  background-color: $dark-blue2;
+  height: 32px;
+  padding: 0;
+  -webkit-box-shadow: 3px 3px 5px rgb(0 0 0 / 35%);
+  box-shadow: 3px 3px 5px rgb(0 0 0 / 35%);
+}
+
+.card-canvas [mat-icon-button] mat-icon {
+  color: $white;
+}
+
+.card-canvas .mat-card-image {
+  margin: 0;
+  width: 104px;
+  height: 72px;
+  object-fit: cover;
+  -webkit-box-shadow: 3px 3px 5px rgb(0 0 0 / 35%);
+  box-shadow: 3px 3px 5px rgb(0 0 0 / 35%);
+}
+.card-canvas .mat-card-image:first-child {
+  margin-top: 0;
+}
+
+mat-card-content strong,
+mat-card-content span {
+  display: block;
+}
+
+mat-card-content .card-title {
+  font-weight: normal;
+  border-bottom: 1px solid $medium-gray;
+  padding-bottom: 15px;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+mat-card-content span,
+mat-card-content p,
+.card-canvas mat-card-actions button span {
+  font-size: 11px;
+}
+
+mat-card-content p {
+  line-height: 1.2;
+}
+.card-canvas-body {
+  padding: 15px 10px 5px 10px;
+}
+
+.card-canvas mat-card-actions {
+  padding: 5px 10px 5px 10px;
+  /* margin-left: 0;
+  margin-right: 0;
+  margin-top: auto; */
+  background-color: #f2f2f2;
+  margin: auto 0 0 0;
+}
+
+.card-canvas mat-card-actions button {
+  width: 100px;
+  height: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

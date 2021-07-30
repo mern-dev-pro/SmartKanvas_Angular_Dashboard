@@ -1,0 +1,29 @@
+<mat-card class="card-canvas" fxLayout="column">
+  <mat-toolbar color="accent" fxLayout="row" fxLayoutAlign="end center">
+    <button
+      mat-icon-button [matMenuTriggerFor]="menu"
+      aria-label="Menu Button"
+      ><mat-icon>more_horiz</mat-icon>
+    </button>
+    <mat-menu #menu [yPosition]="'below'" >
+      <button [routerLink]="'/dashboard/canvas-template/edit/'+canvasTemplate.ID" mat-menu-item>Editar</button>
+      <button mat-menu-item (click)="changeTemplateIsActive()">
+        {{canvasTemplate.IsActive == true ? 'Desativar' : 'Ativar'}}
+      </button>
+      <button mat-menu-item (click)="openDeleteDialog(canvasTemplate)">Excluir</button>
+      <button mat-menu-item (click)="duplicateCanvasTemplate()">Criar cópia </button>
+      <button mat-menu-item (click)="showTimeline()">Linha do Tempo</button>
+    </mat-menu>
+  </mat-toolbar>
+  <mat-card-content class="card-canvas-body" gdColumns="1fr" gdGap="15px">
+    <strong class="card-title">{{canvasTemplate.Title}}</strong>
+    <p class="description" gdColumn="span 2">
+      {{canvasTemplate.Description}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button *ngIf="canvasTemplate.IsActive" mat-raised-button class="btn-card btn-card-primary">Ativo</button>
+    <button *ngIf="!canvasTemplate.IsActive"  mat-raised-button class="btn-card btn-card-warn">Inativo</button>
+  </mat-card-actions>
+</mat-card>
+

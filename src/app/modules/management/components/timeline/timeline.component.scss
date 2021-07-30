@@ -1,0 +1,109 @@
+@import "~src/styles/variables.scss";
+@import "~src/styles/mixins.scss";
+
+.timeline {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $light-gray;
+  overflow-y: auto;
+}
+
+.months {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    background: $white;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1px;
+  }
+  .month-circle {
+    @include circle(5.33rem);
+    font-size: 1.07rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background-color: $white;
+    color: $dark-gray;
+    margin: 20px auto;
+    z-index: 1;
+    position: relative;
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+}
+
+header {
+  padding: 0 0 20px;
+  background-color: $white;
+  .container-back {
+    mat-icon {
+      color: $pink;
+      font-size: 2rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      border-radius: 50%;
+
+      &.edit-icon {
+        color: $dark-gray;
+        font-size: 1.07rem;
+      }
+    }
+    mat-icon:hover {
+      opacity: 0.7;
+    }
+    h2 {
+      font-size: 1.067rem;
+      margin-left: 10px;
+      margin-bottom: 0;
+      letter-spacing: 1px;
+      color: $dark-gray;
+      font-family: Roboto;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+  }
+
+  .help-button {
+    width: auto;
+    height: auto;
+    line-height: initial;
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 580px) {
+  .months {
+    margin-left: 30px;
+    .month-circle {
+      left: 30%;
+    }
+    &::after {
+      left: 80%;
+      margin-left: -1px;
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .months {
+    margin-left: 10px;
+    &::after {
+      left: 90%;
+    }
+
+    .month-circle {
+      left: 40%;
+      @include circle(4rem);
+      font-size: 0.9rem;
+    }
+  }
+}

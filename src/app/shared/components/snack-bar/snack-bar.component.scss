@@ -1,0 +1,30 @@
+
+.snack-bar {
+  z-index: 100;
+}
+
+.body-snack {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+}
+mat-icon {
+  margin: 0px 32px 0px 0px;
+}
+.success {
+  color: #00bf85;
+}
+
+.error {
+  color: #ff3535;
+}
+
+.warning {
+  color: #ff7535;
+}
+
+.snack-message {
+  color: #fff;
+  margin: 0;
+}

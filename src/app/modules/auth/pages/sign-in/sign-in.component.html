@@ -1,0 +1,93 @@
+<div
+  fxLayout="row"
+  fxLayoutAlign="center center"
+  class="container-auth">
+  <div fxLayout="row" fxLayoutAlign="center center" class="container-card" ngClass.xs="container-card-xs">
+    <mat-card fxLayout="column" ngClass.xs="card-login-xs" ngClass.gt-sm="card-login-gt-sm" class="card-login" fxLayoutAlign="center center">
+      <img src="../../../../../assets/img/logo.svg">
+      <div fxLayout="column" class="container-social-xs"fxShow.xs >
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <!-- <button mat-raised-button (click)="loginLinkedin()" fxLayoutAlign="center center" color="primary" class="btn-facebook">
+            <div fxLayout="row" fxLayoutAlign="space-around center">
+              <mat-icon><i class="fab fa-facebook-f"></i></mat-icon>
+              <span>
+                Continue com o Facebook
+              </span>
+            </div>
+          </button> -->
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <button mat-raised-button fxLayoutAlign="center center" (click)="loginGoogle()"  color="primary" class="btn-google">
+            <div fxLayout="row" fxLayoutAlign="space-around center">
+              <mat-icon><i class="fab fa-google"></i></mat-icon>
+              <span>
+                Continue com o Google
+              </span>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div fxLayout="column" class="container-input" [formGroup]="authForm">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input type="email" placeholder="Digite seu email" formControlName="email" name="email" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Senha</mat-label>
+          <input matInput placeholder="Digite sua senha" formControlName="password" [type]="hide ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <!-- <div>
+          <mat-checkbox color="primary">Mantenha-me conectado</mat-checkbox>
+        </div> -->
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="loginEmailPass()"
+            class="btn-submit"
+            [ngClass]="{'btn-disabled': authForm.invalid}"
+            [disabled]="authForm.invalid"
+          >ENTRAR</button>
+        </div>
+
+        <!-- <div fxLayout="row" fxLayoutAlign="center center" fxHide.xs>
+          <button mat-raised-button (click)="loginLinkedin()" fxLayoutAlign="center center" color="primary" class="btn-facebook">
+            <div fxLayout="row" fxLayoutAlign="space-around center">
+              <mat-icon><i class="fab fa-facebook-f"></i></mat-icon>
+              <span>
+                Continue com o Facebook
+              </span>
+            </div>
+          </button>
+        </div> -->
+        <div fxLayout="row" fxLayoutAlign="center center" fxHide.xs>
+          <button mat-raised-button  (click)="loginGoogle()" fxLayoutAlign="center center" color="primary" class="btn-google">
+            <div fxLayout="row" fxLayoutAlign="space-around center">
+              <mat-icon><i class="fab fa-google"></i></mat-icon>
+              <span>
+                Continue com o Google
+              </span>
+            </div>
+          </button>
+        </div>
+        <div class="container-create-account" fxLayoutAlign="center center">
+          <span>Não tem uma conta?</span>
+          <a (click)="goToCreateAccount()" color="primary" class="btn-forgot-pass">Registre-se</a>
+        </div>
+        <div  fxLayoutAlign="center center">
+          <a color="primary" class="btn-forgot-pass" (click)="recoverPassword()">Esqueceu sua senha?</a>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  <div fxHide.xs fxLayoutAlign="end end" class="container-background">
+    <img src="../../../../../assets/img/img-login-top.svg" class="img-top-login">
+    <div  class="container-img"></div>
+    <img src="../../../../../assets/img/img-login-bottom.svg" class="img-bottom-login">
+  </div>
+</div>

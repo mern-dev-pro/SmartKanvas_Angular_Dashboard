@@ -1,0 +1,10 @@
+<span class="snack-bar">
+  <div class="body-snack">
+    <mat-icon class="success" *ngIf="data.type === 'success'"
+      >check_circle</mat-icon
+    >
+    <mat-icon class="warning" *ngIf="data.type === 'warning'">warning</mat-icon>
+    <mat-icon class="error" *ngIf="data.type === 'error'">error</mat-icon>
+    <p class="snack-message">{{ data.message }}</p>
+  </div>
+</span>

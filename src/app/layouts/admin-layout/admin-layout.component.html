@@ -1,0 +1,156 @@
+<div style="width: 100vw; height: 100vh;">
+  <app-header #matToolbar (animation)="alterStateMenu($event)" class="container"></app-header>
+  <mat-drawer-container autosize class="container" hasBackdrop="false">
+    <mat-drawer
+      *ngIf="isDesktopDevice"
+      [@menuState]="menuState"
+      [ngClass]="{'mat-drawer-mobile': isDesktopDevice}"
+      fixedInViewport="true"
+      [mode]="mode"
+      style="width: 70px;"
+      opened="true"
+      #drawer
+      class="body-menu not-mobile"
+    >
+      <div
+        *ngFor="let menu of openSubMenuState; index as i"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        class="container-btns"
+      >
+        <div class="border-btn" [@borderBtnSelectedState]="menu.state"></div>
+        <button
+          #button
+          fxLayout="row"
+          [@selectedItemMenuState]="menu.state"
+          (click)="selectedMenu(menu, i)"
+          [routerLink]="'/' + menu.route"
+          routerLinkActive="active"
+          fxLayoutAlign="start center"
+          class="btn-menu"
+        >
+          <mat-icon [ngStyle]="{ 'margin-left': '1px' }"
+            [@colorIconState]="menu.state">
+            {{ menu.icon }}
+          </mat-icon>
+          <span
+            [@hiddenTitleMenu]="titleState"
+            *ngIf="btnMenuState === 'btnMenuOpen'"
+            >{{ menu.title }}
+          </span>
+        </button>
+      </div>
+    </mat-drawer>
+
+    <mat-drawer
+      *ngIf="isMobile || isTablet"
+      [@menuState]="menuState"
+      fixedInViewport="true"
+      [mode]="mode"
+      style="width: 70px;"
+      opened="false"
+      #drawer
+      class="body-menu-mobile"
+    >
+      <button mat-icon-button (click)="clickCloseMenu()">
+        <mat-icon>menu_open</mat-icon>
+      </button>
+      <div
+        *ngFor="let menu of openSubMenuState; index as i"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        class="container-btns"
+      >
+        <button
+          #button
+          fxLayout="row"
+          [@selectedItemMenuState]="menu.state"
+          (click)="selectedMenu(menu, i)"
+          [routerLink]="'/' + menu.route"
+          routerLinkActive="active"
+          fxLayoutAlign="start center"
+          class="btn-menu"
+        >
+          <mat-icon [ngStyle]="{ 'margin-left': '1px' }"
+            [@colorIconState]="menu.state"
+            >{{ menu.icon }}
+          </mat-icon>
+          <span
+            [@hiddenTitleMenu]="titleState"
+            *ngIf="btnMenuState === 'btnMenuOpen'"
+            >{{ menu.title }}
+          </span>
+        </button>
+      </div>
+    </mat-drawer>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-container>
+
+  <!-- <div class="container">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <div class="container-menu" fxHide.xs fxLayout="column" fxLayoutAlign="start space-between">
+        <div class="container-btn" fxLayout="row" fxLayoutAlign="space-around center" *ngFor="let menu of applicationMenu">
+          <div class="border-btn" [@borderBtnSelectedState]="menu.state"></div>
+          <button
+            class="btn-menu"
+            [@btnMenuState]="menu.state"
+            (click)="selectedBtnMenu(menu)"
+          >
+            <div fxLayout="row" fxLayoutAlign="space-around center">
+              <mat-icon
+                [@colorIconState]="menu.state"
+              >{{menu.icon}}</mat-icon>
+              <span>{{menu.name}}</span>
+            </div>
+          </button>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="end start" class="container-logout-settings">
+          <button mat-icon-button>
+              <mat-icon fxLayoutAlign="center center">settings</mat-icon>
+
+          </button>
+          <button mat-icon-button>
+            <mat-icon>logout</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="container-general" ngClass.xs="container-general-xs" fxLayoutAlign.xs="center center">
+        <div fxLayout="column" fxLayoutAlign="start start">
+          <div class="header" fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign.xs="center center">
+            <div fxLayout="row" fxLayoutAlign="start center" class="container-back">
+              <mat-icon class="back-icon">keyboard_backspace</mat-icon>
+              <p class="title-header">{{ titlePage }}</p>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="end center" class="container-search">
+              <mat-icon class="search-icon">search</mat-icon>
+            </div>
+          </div>
+          <div class="container-filter" fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign.xs="center center">
+            <button mat-icon-button>
+              <mat-icon>filter_list</mat-icon>
+            </button>
+            <div class="container-tags">
+              <span>Tipo de Trabalho</span>
+              <span>Status</span>
+            </div>
+
+          </div>
+          <div class="content">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+  <div class="btn-create-dynamic">
+    <button mat-fab (click)="openModal()" class="new-dynamic">
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-icon>add</mat-icon>
+      </div>
+    </button>
+  </div>
+</div>

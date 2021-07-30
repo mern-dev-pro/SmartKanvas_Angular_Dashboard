@@ -1,0 +1,108 @@
+
+
+<app-management-pages-template
+  pageTitle="Usuários"
+  [hasSwitchListType]="!isMobile"
+  (search)="searchUser($event)"
+  (switchListType)="switchListType($event)"
+  (addClick)="redirectToAddUser()">
+
+  <div filterMenu>
+    <strong class="filter-menu-title">Mostrar usuários</strong>
+    <div class="filters-container" (click)="$event.stopPropagation()">
+      <mat-checkbox *ngFor="let config of filtersConfig; let i = index" class="checkbox-filter"
+        [(ngModel)]="config.value" (change)="filterUsers()" color="primary"
+        [ngClass]="{'filter-underline': i === 2}"
+        >
+        {{config.label}}
+      </mat-checkbox>
+    </div>
+
+  </div>
+
+  <div class="page-items-content users">
+    <div class="grid-list" *ngIf="listType == 'grid' && isMobile == false">
+      <ejs-grid #adaptive [dataSource]="data" enableAdaptiveUI="true"
+        height="100%" [rowRenderingMode]="rowMode">
+        <e-columns>
+          <e-column width="180" field="UserName" headerText="Nome"></e-column>
+          <e-column width="180" field="Email" headerText="E-mail">
+            <p>sds</p>
+          </e-column>
+          <e-column width="180" field="profile" headerText="Perfil">
+            <ng-template #template let-data>
+              <span>{{dictionary && dictionary[data.profile.Profile]}}</span>
+            </ng-template>
+          </e-column>
+          <e-column width="180" field="Status">
+            <ng-template #template let-data>
+              <button
+                *ngIf="data.IsActive == true && data.InviteStatus == true"
+                mat-raised-button class="btn-card btn-user-status btn-card-primary">
+                Ativo
+              </button>
+              <button
+                *ngIf="data.IsActive == false"
+                mat-raised-button class="btn-card btn-user-status btn-card-warn">
+                Inativo
+              </button>
+              <div class="pending" *ngIf="data.IsActive == true && data.InviteStatus == false">
+                <button mat-raised-button class="btn-card btn-user-status btn-card-pending">
+                  Convite pendente
+                </button>
+                <!-- <p fxLayout="row" fxLayoutAlign="start center">
+                  <mat-icon>event_available</mat-icon>
+                  <strong>
+                    {{data.InvitedDate}}
+                  </strong>
+                </p> -->
+              </div>
+
+            </ng-template>
+
+          </e-column>
+          <e-column width="180" headerText="Opções">
+            <ng-template #template let-data>
+              <button
+                mat-icon-button [matMenuTriggerFor]="menu"
+                aria-label="Menu Button"
+                ><mat-icon>more_horiz</mat-icon>
+              </button>
+              <mat-menu #menu [yPosition]="'below'" >
+                <button
+                  mat-menu-item
+                  [routerLink]="['/dashboard/user/',data.ID,'edit']"
+                >
+                  Editar
+                </button>
+                <!-- <button
+                  mat-menu-item
+                  [routerLink]="['/dashboard/user/',data.currentUserWorkspaceID,'edit']"
+                >
+                  Editar
+                </button> -->
+                <button mat-menu-item (click)="changeUserStatus(data)">
+                  {{data.IsActive ? 'Desativar' : 'Ativar'}}
+                </button>
+                <button (click)="openDeleteDialog(data)" mat-menu-item>Excluir</button>
+                <button (click)="openResendInviteDialog(data)" mat-menu-item>Reenviar convite</button>
+              </mat-menu>
+            </ng-template>
+          </e-column>
+        </e-columns>
+      </ejs-grid>
+    </div>
+    <div class="cards-list" *ngIf="listType == 'cards'">
+      <app-card-users
+        *ngFor="let user of data"
+        [user]="user"
+        (changeIsActive)="changeUserStatus($event)"
+        (resendInvite)="openResendInviteDialog($event)"
+        (delete)="openDeleteDialog($event)"
+      >
+      </app-card-users>
+    </div>
+
+  </div>
+</app-management-pages-template>
+

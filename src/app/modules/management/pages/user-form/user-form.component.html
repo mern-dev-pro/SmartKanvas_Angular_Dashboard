@@ -1,0 +1,74 @@
+<section class="dashboard-content form-page user-form">
+  <header
+    class="panel-header" fxLayout="row" fxLayout.xs="row wrap"
+    fxLayoutAlign="space-between center" fxLayoutAlign.xs="start center">
+    <div class="left" fxLayout="row">
+      <div fxLayout="row" class="container-back" fxLayoutAlign="start center" >
+        <mat-icon (click)="navigateBack()">arrow_back</mat-icon>
+        <h2>{{userID ? 'Editar Usuário' : 'Novo usuário'}}</h2>
+
+      </div>
+    </div>
+
+  </header>
+
+
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <!-- <app-image-input [imagePath]="photoURL" (openInputFile)="openInput()"></app-image-input> -->
+    <div class="right">
+      <input type="file" class="input-file" #photo accept="Image/*" (change)="changePreview($event)"  />
+
+      <mat-form-field appearance="outline">
+        <mat-label><span *ngIf="!this.user">*</span>Nome</mat-label>
+        <input matInput formControlName="UserName"  />
+        <mat-error
+          *ngIf="!userForm.get('UserName').valid &&
+          userForm.get('UserName').touched">
+          Campo obrigatório
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label><span *ngIf="!this.user">*</span>E-mail</mat-label>
+        <input type="email" matInput formControlName="Email"  />
+        <mat-error
+          *ngIf="!userForm.get('Email').valid &&
+          userForm.get('Email').touched">
+          Digite um email válido
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label><span *ngIf="!this.user">*</span>Perfil</mat-label>
+        <mat-select formControlName="ProfileCode">
+          <mat-option *ngFor="let profile of profiles"
+            [value]="profile.ID">{{dictionary && dictionary[profile.Profile]}}</mat-option>
+          <!-- <mat-option value="User">Membro da Equipe</mat-option>
+          <mat-option value="Guest">Visualizador</mat-option> -->
+        </mat-select>
+        <mat-error
+          *ngIf="!userForm.get('Email').valid &&
+          userForm.get('Email').touched">
+          Campo obrigatório
+        </mat-error>
+      </mat-form-field>
+      <div class="actions" fxLayout="row" fxLayoutAlign="end">
+        <button type="button"
+          (click)="navigateBack()"
+          class="btn-close"
+          mat-raised-button
+          title="Ignora o cadastro e retona à lista de usuários"
+        >
+          Fechar
+        </button>
+        <button
+          mat-raised-button [disabled]="userForm.invalid"
+          class="btn-primary"
+          title="Envia um convite ao email informado para que se torne um usuário"
+        >
+          Salvar
+        </button>
+      </div>
+    </div>
+
+
+  </form>
+</section>

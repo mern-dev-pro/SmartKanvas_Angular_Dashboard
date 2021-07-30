@@ -1,0 +1,91 @@
+
+
+<section
+  fxLayout="row wrap"
+  fxLayout.xs="column"
+  fxLayoutWrap
+  fxLayoutGap="0.5%"
+  fxLayoutAlign="start start"
+  fxLayoutAlign.xs="start center"
+  class="dashboard-content content"
+
+>
+  <div class="management-header container-filter">
+    <div fxLayout="row" fxLayoutAlign="start center" class="container-back">
+      <p>Modelos de Canvas</p>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center" class="content-filter">
+      <div class="menu-filter">
+        <button mat-icon-button [matMenuTriggerFor]="filterMenu" aria-label="Menu Filter Button"
+          title="Aplicar filtro"
+        >
+          <mat-icon>filter_alt</mat-icon>
+        </button>
+
+        <mat-menu #filterMenu yPosition="below">
+          <strong class="filter-menu-title">Mostrar modelos</strong>
+          <div class="filters-container" (click)="$event.stopPropagation()">
+            <mat-checkbox class="checkbox-filter" color="primary"
+              [(ngModel)]="filterActive" (change)="filterTemplates()">
+              Ativos
+            </mat-checkbox>
+            <mat-checkbox class="checkbox-filter" color="primary"
+              [(ngModel)]="filterInactive" (change)="filterTemplates()">
+              Inativos
+            </mat-checkbox>
+            <mat-checkbox class="checkbox-filter" color="primary"
+            [(ngModel)]="filterWorkspace" (change)="filterTemplates()">
+              Deste espaço de trabalho
+            </mat-checkbox>
+            <mat-checkbox class="checkbox-filter" color="primary"
+              [(ngModel)]="filterStandard" (change)="filterTemplates()">
+              Padrões
+            </mat-checkbox>
+          </div>
+        </mat-menu>
+      </div>
+
+      <div class="search">
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Busca por palavra</mat-label>
+            <div class="search-input-buttons"  fxLayout="flex" fxLayoutAlign="space-between center">
+              <!-- <input matInput #searchInput (keyup)="onSearch()" (focus)="showClose()" /> -->
+              <input matInput  (keyup)="searchCanvasTemplate()" [(ngModel)]="searchInput" />
+
+              <mat-icon matSuffix (click)="searchCanvasTemplate()" >search</mat-icon>
+              <mat-icon class="close-search-button"
+                *ngIf="searchInput" matSuffix (click)="clearSearch()" >
+                close
+              </mat-icon>
+            </div>
+
+          </mat-form-field>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div
+    fxLayout="row wrap" fxLayoutGap="20px" class="page-items canvas-templates"
+    fxLayoutAlign.xs="center start"
+  >
+    <app-card-canvas class="item-card"
+      *ngFor="let canvasTemplate of showCanvasTemplates"
+      [canvasTemplate]="canvasTemplate"
+      [userWorkspaceID]="userWorkspaceID"
+      (delete)="refreshTemplates()"
+      (duplicate)="openDuplicateDialog($event)"
+      (changeIsActive)="changesCanvasTemplateIsActive($event)"
+    >
+    </app-card-canvas>
+
+  </div>
+  <button
+    fxLayout="row" fxLayoutAlign="center" class="btn-icon"
+    mat-fab color="accent" aria-label="Botão de adicionar"
+    routerLink="/dashboard/canvas-template/new"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</section>
+

@@ -1,0 +1,49 @@
+<mat-card class="card" fxLayout="column">
+  <mat-toolbar fxLayout="row" fxLayoutAlign="flex-end" color="accent">
+    <button mat-icon-button aria-label="Menu Button"
+      [matMenuTriggerFor]="menu">
+      <mat-icon>more_horiz</mat-icon>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Editar</button>
+        <button (click)="OnClickChangeStatus()" mat-menu-item>
+          {{user.IsActive == true ? 'Desativar' : 'Ativar'}}
+        </button>
+        <button (click)="OnClickResendInvite()" mat-menu-item >Reenviar convite</button>
+        <button (click)="OnClickDelete()" mat-menu-item>Excluir</button>
+      </mat-menu>
+    </button>
+  </mat-toolbar>
+  <div class="card-body" fxLayoutAlign="row" fxLayoutGap="15px">
+    <img class="mat-card-image"
+      mat-card-sm-image [src]="user.Photo || '../../../../assets/img/preview_default.svg'" />
+    <mat-card-content>
+      <p><strong>{{user.UserName}}</strong></p>
+      <p>{{user.Email}}</p>
+      <p>{{user.profile.Profile}}</p>
+    </mat-card-content>
+  </div>
+  <mat-card-actions>
+    <button
+      *ngIf="user.IsActive == true && user.InviteStatus == true"
+      mat-raised-button class="btn-card btn-user-status btn-card-primary">
+      Ativo
+    </button>
+    <button
+      *ngIf="user.IsActive == false"
+      mat-raised-button class="btn-card btn-user-status btn-card-warn" >
+      Inativo
+    </button>
+    <div class="pending" *ngIf="user.IsActive == true && user.InviteStatus == false">
+      <button mat-raised-button class="btn-card btn-user-status btn-card-pending">
+        Convite pendente
+      </button>
+      <!-- <p>
+        <mat-icon>event_available</mat-icon>
+        <strong>
+          {{user.InvitedDate}}
+        </strong>
+      </p> -->
+    </div>
+  </mat-card-actions>
+</mat-card>
+

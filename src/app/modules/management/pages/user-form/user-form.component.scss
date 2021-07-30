@@ -1,0 +1,28 @@
+mat-form-field {
+  display: block;
+}
+
+.form-page {
+  form {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+
+    .input-file {
+      display: none;
+    }
+    .right {
+      max-width: 600px;
+    }
+    mat-form-field {
+      margin-bottom: 20px;
+    }
+  }
+
+  .actions {
+    .btn-close {
+      margin-right: 30px;
+    }
+  }
+}

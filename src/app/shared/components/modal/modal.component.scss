@@ -1,0 +1,58 @@
+.modal {
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(#000000, 0.6);
+  width: 100%;
+}
+
+.btn-close-modal {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  z-index: 1;
+}
+
+.btn-close-modal mat-icon {
+  color: #0000008a;
+}
+
+p {
+  text-align: center;
+  font-size: 24px;
+  font-weight: var(--font-medium);
+  padding: 0px;
+}
+
+.modal-header {
+  width: 100%;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  border-bottom: 1px solid #30376326;
+}
+
+.modal-header-title {
+  margin: 32px 0px !important;
+  padding: 0px;
+}
+
+.modal-body {
+  margin: 0;
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.mat-icon-button ::ng-deep .mat-button-focus-overlay {
+  display: none;
+}
+
+@media (max-width: 400px) {
+  .modal {
+    padding: 24px 16px;
+  }
+}

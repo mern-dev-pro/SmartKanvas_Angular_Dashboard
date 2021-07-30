@@ -1,0 +1,40 @@
+{
+  "boxes": [
+    {
+      "title":"Box title 1",
+      "description": "Description of box 1",
+      "icon":"book",
+      "box-bgcolor":"#AADDAD"
+    },
+    {
+      "title":"Box title 2",
+      "description": "Description of box 2",
+      "icon":"book",
+      "box-bgcolor":"#AADDAD"
+    },
+    {
+      "title":"Box title 3",
+      "description": "Description of box 3",
+      "icon":"book",
+      "box-bgcolor":"#AADDAD"
+    },
+    {
+      "title":"Box title 4",
+      "description": "Description of box 4",
+      "icon":"book",
+      "box-bgcolor":"#AADDAD"
+    },
+    {
+      "title":"Box title 5",
+      "description": "Description of box 5",
+      "icon":"book",
+      "box-bgcolor":"#AADDAD"
+    },
+    {
+      "title":"Box title 6",
+      "description": "Description of box 6",
+      "icon":"book",
+      "box-bgcolor":"#AADDAD"
+    }
+  ]
+}

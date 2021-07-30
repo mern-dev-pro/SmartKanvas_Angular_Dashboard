@@ -1,0 +1,30 @@
+<div class="modal">
+  <div
+    mat-dialog-title
+    class="modal-header"
+    fxLayout="row"
+    fxLayoutAlign="center center"
+  >
+    <div
+      class="modal-header-title"
+      ngClass.xs="modal-header-title-xs"
+      fxFlexOffset="8"
+      fxFlex="84"
+      fxLayoutAlign="center center"
+    >
+      <p>{{ titulo }}</p>
+    </div>
+
+    <div fxFlexAlign="end center" fxFlex.sm="8" class="btn-close-modal">
+      <button mat-icon-button (click)="close()" ngClass.xs="close-btn-xs">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+  <mat-dialog-content ngClass="modal-body" ngClass.xs="modal-body-xs">
+    <ng-content select="[body]"></ng-content>
+  </mat-dialog-content>
+</div>
+<mat-dialog-actions fxLayoutAlign="end">
+  <ng-content select="[footer]"></ng-content>
+</mat-dialog-actions>
