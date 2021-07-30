@@ -35,8 +35,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { ManagementPagesTemplateComponent } from './components/management-pages-template/management-pages-template.component';
 import { UserFormComponent } from './pages/user-form/user-form.component';
+import { JobsComponent } from './pages/jobs/jobs.component'
 import { GridAllModule } from '@syncfusion/ej2-angular-grids';
-
 
 @NgModule({
   declarations: [
@@ -49,7 +49,8 @@ import { GridAllModule } from '@syncfusion/ej2-angular-grids';
     ManagementHeaderComponent,
     TimelineComponent,
     ManagementPagesTemplateComponent,
-    UserFormComponent
+    UserFormComponent,
+    JobsComponent
   ],
   imports: [
     CommonModule,

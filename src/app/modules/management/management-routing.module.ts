@@ -4,12 +4,18 @@ import { CanvasTemplatesComponent } from './pages/canvas-templates/canvas-templa
 import { HomeComponent } from './pages/home/home.component';
 import { UserFormComponent } from './pages/user-form/user-form.component';
 import { UsersComponent } from './pages/users/users.component';
+import { JobsComponent } from './pages/jobs/jobs.component';
 
 const routes: Routes = [
   {
     path: '',
     // component: HomeComponent,
     component: UsersComponent
+  },
+  {
+    path: 'jobs',
+    // component: HomeComponent,
+    component: JobsComponent
   },
   {
     path: 'list-user',

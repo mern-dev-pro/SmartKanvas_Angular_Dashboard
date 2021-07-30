@@ -49,10 +49,6 @@ const routes: Routes = [
     component: CanvasTemplateComponent
   },
   {
-    path:'dashboard/trabalhos',
-    component: AdminLayoutComponent
-  },
-  {
     path: '',
     pathMatch: 'full',
     component: SignInComponent,
