@@ -1,21 +1,33 @@
 <app-management-pages-template
     pageTitle="Trabalhos"
+    [hasSwitchListType]="!isMobile"
+    (switchListType)="switchListType($event)"
 >
     <div>
         <strong class="filter-menu-title">Mostrar usuários</strong>
     </div>
     <div class="page-items-content users">
-        <div class="grid-list">
-            <ejs-grid enableAdaptiveUI="true" height="100%">
+        <div class="grid-list" *ngIf="listType == 'grid' && isMobile == false" >
+            <ejs-grid enableAdaptiveUI="true" height="100%" #adaptive [dataSource]="data">
                 <e-columns>
-                    <e-column width="180" field="title" headerText="Título"></e-column>
-                    <e-column width="180" field="owner" headerText="Responsável"></e-column>
-                    <e-column width="180" field="type" headerText="Tipo"></e-column>
-                    <e-column width="180" field="status" headerText="Status"></e-column>
+                    <e-column width="180" field="Title" headerText="Título"></e-column>
+                    <e-column width="180" field="Responsible" headerText="Responsável"></e-column>
+                    <e-column width="180" field="Type" headerText="Tipo"></e-column>
+                    <e-column width="180" field="Status" headerText="Status"></e-column>
                     <e-column width="180" field="label" headerText="Etiquetas"></e-column>
-                    <e-column width="180" field="options" headerText="Options"></e-column>
+                    <e-column width="180" field="Tags" headerText="Options"></e-column>
                 </e-columns>
             </ejs-grid>
+        </div>
+        <div class="cards-list" *ngIf="listType == 'cards'">
+            <app-card-users
+              <!-- *ngFor="let user of data"
+              [user]="user"
+              (changeIsActive)="changeUserStatus($event)"
+              (resendInvite)="openResendInviteDialog($event)"
+              (delete)="openDeleteDialog($event)" -->
+            >
+            </app-card-users>
         </div>
     </div>
 </app-management-pages-template>

@@ -22,6 +22,7 @@ import { RouterModule } from '@angular/router';
 import { TokenInterceptor } from 'src/app/core/interceptors/token.interceptor';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
+import { JobService } from 'src/app/services/job.service';
 
 import { ModalNewUserComponent } from './components/modal-new-user/modal-new-user.component';
 import { ManagementRoutingModule } from './management-routing.module';
@@ -78,7 +79,8 @@ import { GridAllModule } from '@syncfusion/ej2-angular-grids';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     UserService,
-    AuthService
+    AuthService,
+    JobService
   ]
 })
 export class ManagementModule { }
