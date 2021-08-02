@@ -16,7 +16,6 @@ export class JobFormComponent implements OnInit {
   types = ['Processo', 'Projeto', 'Registro de Oportunidade'];
   statuses = ['Em Planejamento', 'Em Execução', 'EnCerrado'];
 
-  selectedCar: number;
   cars = [
     { id: 1, name: 'Volvo' },
     { id: 2, name: 'Saab' },
