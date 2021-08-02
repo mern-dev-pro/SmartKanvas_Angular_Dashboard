@@ -1,0 +1,34 @@
+<h4 mat-dialog-title class="text-bold">Novo membro - Desenvolvimento do SmartKanvas</h4>
+<div mat-dialog-content style="overflow: visible;">
+  <form>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>* Usuário</mat-label>
+      <mat-select >
+        <mat-option [value] = "" >ttt</mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>* Perfil neste trabalho</mat-label>
+      <mat-select >
+        <mat-option [value] = "" >ttt</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="grid-slide-toggle-material"> 
+      <mat-slide-toggle>O usuário poderá executar tarefas neste trabalho?</mat-slide-toggle>
+    </div>
+
+    <div class="my-sm">
+      <ng-select placeholder="Digite aqui as etiquetas deste medddmbro" [(ngModel)]="selectedCar" [addTag]="true" [multiple]="true">
+        <ng-option *ngFor="let car of cars" [value]="car.id" style="padding: 5px;">{{car.name}}</ng-option>
+      </ng-select>
+    </div>
+
+  </form>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+</div>

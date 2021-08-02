@@ -14,6 +14,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'
+import { NgSelectModule } from '@ng-select/ng-select';
 
 //syncfusion
 import  { DashboardLayoutModule } from '@syncfusion/ej2-angular-layouts';
@@ -42,6 +44,7 @@ import { ModalNewJobComponent } from './components/modal-new-job/modal-new-job.c
 import { JobFormComponent } from './pages/job-form/job-form.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ModelAddJobMemberComponent } from './components/model-add-job-member/model-add-job-member.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     UserFormComponent,
     JobsComponent,
     ModalNewJobComponent,
-    JobFormComponent
+    JobFormComponent,
+    ModelAddJobMemberComponent,
   ],
   imports: [
     CommonModule,
@@ -81,7 +85,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     DashboardLayoutModule,
     GridAllModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSlideToggleModule,
+    NgSelectModule
   ],
   exports:[CanvasTemplateComponent],
   providers: [
