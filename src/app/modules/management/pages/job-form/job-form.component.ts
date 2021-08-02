@@ -11,7 +11,9 @@ export class JobFormComponent implements OnInit {
   jobID:string;
   jobForm: FormGroup;
   job: Job;
-  types: ['Processo', 'Projeto', 'Registro de Oportunidade'];
+  types = ['Processo', 'Projeto', 'Registro de Oportunidade'];
+  statuses = ['Em Planejamento', 'Em Execução', 'EnCerrado'];
+  
   constructor(
     public fb: FormBuilder,
     private router: Router,
@@ -33,7 +35,9 @@ export class JobFormComponent implements OnInit {
       Description: ['',Validators.required],
       Type: ['',Validators.required],
       Status: ['',Validators.required],
-      ResponsiveUser: ['',Validators.required]
+      ResponsiveUser: ['',Validators.required],
+      StartDate: ['',Validators.required],
+      EndDate: ['',Validators.required]
     });
   }
   updateForm():void{

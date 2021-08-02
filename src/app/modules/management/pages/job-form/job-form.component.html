@@ -2,11 +2,17 @@
     <header
     class="panel-header" fxLayout="row" fxLayout.xs="row wrap"
     fxLayoutAlign="space-between center" fxLayoutAlign.xs="start center">
-    <div class="left" fxLayout="row">
+    <div class="left w-75" fxLayout="row" fxLayoutAlign="space-between start">
       <div fxLayout="row" class="container-back" fxLayoutAlign="start center" >
         <mat-icon (click)="navigateBack()">arrow_back</mat-icon>
         <h2>{{jobID ? 'Edição do trabalho' : 'Novo trabalho'}}</h2>
       </div>
+      <mat-form-field appearance="outline" class="w-50">
+        <button mat-button matPrefix mat-icon-button>
+          <mat-icon>loyalty</mat-icon>
+        </button>
+        <input matInput formControlName="Label" placeholder="Digite aqui as etiquetas deste trabalho"/>
+      </mat-form-field>
     </div>
   </header>
 
@@ -24,7 +30,7 @@
 
       <mat-form-field appearance="outline" class="w-75">
         <mat-label><span *ngIf="!this.job">*</span>Descrição</mat-label>
-        <textarea matInput rows="5"></textarea>
+        <textarea matInput rows="5" formControlName="Description"></textarea>
         <mat-error
           *ngIf="!jobForm.get('Description').valid &&
           jobForm.get('Description').touched">
@@ -37,7 +43,7 @@
           <mat-form-field appearance="outline"  class="w-100">
             <mat-label><span *ngIf="!this.job">*</span>Tipo</mat-label>
             <mat-select formControlName="Type">
-              <mat-option *ngFor="let type of types">{{type}}</mat-option>
+              <mat-option *ngFor="let type of types" [value]="type">{{type}}</mat-option>
             </mat-select>
             <mat-error
               *ngIf="!jobForm.get('Type').valid &&
@@ -50,7 +56,7 @@
           <mat-form-field appearance="outline" class="w-100">
             <mat-label><span *ngIf="!this.job">*</span>Status</mat-label>
             <mat-select formControlName="Status">
-              <mat-option >tt</mat-option>
+              <mat-option *ngFor="let status of statuses" [value]="status" >{{status}}</mat-option>
             </mat-select>
             <mat-error
               *ngIf="!jobForm.get('Status').valid &&
@@ -80,7 +86,7 @@
             <div class="w-50 px-sm-left">
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Início</mat-label>
-                <input matInput [matDatepicker]="picker1">
+                <input matInput [matDatepicker]="picker1" formControlName="StartDate">
                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
               </mat-form-field>
@@ -88,7 +94,7 @@
             <div class="w-50 px-sm-right">
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Término</mat-label>
-                <input matInput [matDatepicker]="picker2">
+                <input matInput [matDatepicker]="picker2" formControlName="EndDate">
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2></mat-datepicker>
               </mat-form-field>
@@ -127,6 +133,7 @@
         <button  mat-raised-button class="btn-card btn-card-primary mx-sm p-sm">Salvar</button>
         <button  mat-raised-button class="btn-card btn-card-primary mx-sm p-sm">Salvar e ir para o Canvas</button>
       </div>
+
     </div>
   </form>
 </section>

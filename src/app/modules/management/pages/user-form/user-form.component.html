@@ -41,8 +41,6 @@
         <mat-select formControlName="ProfileCode">
           <mat-option *ngFor="let profile of profiles"
             [value]="profile.ID">{{dictionary && dictionary[profile.Profile]}}</mat-option>
-          <!-- <mat-option value="User">Membro da Equipe</mat-option>
-          <mat-option value="Guest">Visualizador</mat-option> -->
         </mat-select>
         <mat-error
           *ngIf="!userForm.get('Email').valid &&
