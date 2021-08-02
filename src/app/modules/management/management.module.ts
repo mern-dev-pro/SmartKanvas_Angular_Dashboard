@@ -38,6 +38,9 @@ import { ManagementPagesTemplateComponent } from './components/management-pages-
 import { UserFormComponent } from './pages/user-form/user-form.component';
 import { JobsComponent } from './pages/jobs/jobs.component'
 import { GridAllModule } from '@syncfusion/ej2-angular-grids';
+import { ModalNewJobComponent } from './components/modal-new-job/modal-new-job.component';
+import { JobFormComponentComponent } from './pages/job-form-component/job-form-component.component';
+import { JobFormComponent } from './pages/job-form/job-form.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,10 @@ import { GridAllModule } from '@syncfusion/ej2-angular-grids';
     TimelineComponent,
     ManagementPagesTemplateComponent,
     UserFormComponent,
-    JobsComponent
+    JobsComponent,
+    ModalNewJobComponent,
+    JobFormComponentComponent,
+    JobFormComponent
   ],
   imports: [
     CommonModule,
