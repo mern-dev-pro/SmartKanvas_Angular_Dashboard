@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import { take } from 'rxjs/operators';
 import { Job } from '../models/Job';
 import * as moment from 'moment';
+import { JsonpClientBackend } from '@angular/common/http';
 
 @Injectable()
 export class JobService {
@@ -70,12 +71,26 @@ export class JobService {
     formatJob(job: any): Job{
         const workspaceId = localStorage.getItem('workspaceId');
         const formatedJob: Job = {
-            ID: job.ID,
+            ID:job.ID,
             Title: job.Title,
-            Responsible: job.ResponsibleUser,
-            Type: job.JobType,
-            Status: job.JobStatus,
-            Tags: job.JSonTags
+            Description: job.Description,
+            StartDate: job.StartDate,
+            FinishDate: job.FinishDate,
+            ActualFinishDate: job.ActualFinishDate,
+            JobStatusDate: job.JobStatusDate,
+            CreatedDate: job.CreatedDate,
+            LastUpdate: job.LastUpdate,
+            DeletedDate: job.DeletedDate,
+            JSonTimeline: job.JSonTimeline,
+            JSonTags: job.JSonTags,
+            JSonParameters: job.JSonParameters,
+            Workspace: job.Workspace,
+            JobType: job.JobType,
+            JobStatus: job.JobType,
+            ResponsibleUser: job.ResponsibleUser,
+            CreatedByUser: job.CreatedByUser,
+            UpdatedByUser: job.UpdatedByUser,
+            DeletedByUser: job.DeletedByUser,
         }
         return formatedJob
     }
