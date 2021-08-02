@@ -2,6 +2,7 @@
     pageTitle="Trabalhos"
     [hasSwitchListType]="!isMobile"
     (switchListType)="switchListType($event)"
+    (addClick)="redirectToAddJob()"
 >
     <div>
         <strong class="filter-menu-title">Mostrar usuários</strong>
@@ -10,7 +11,7 @@
         <div class="grid-list" *ngIf="listType == 'grid' && isMobile == false" >
             <ejs-grid enableAdaptiveUI="true" height="100%" #adaptive [dataSource]="data">
                 <e-columns>
-                    <e-column width="180" field="Title" headerText="Título"></e-column>
+                    <e-column width="180" field="Title" headerText="Nome"></e-column>
                     <e-column width="180" field="Responsible" headerText="Responsável"></e-column>
                     <e-column width="180" field="Type" headerText="Tipo"></e-column>
                     <e-column width="180" field="Status" headerText="Status"></e-column>

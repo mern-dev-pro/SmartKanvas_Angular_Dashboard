@@ -25,6 +25,7 @@ export class JobsComponent implements OnInit {
         private deviceService: DeviceDetectorService,
         private profileService: ProfileService,
         private jobservice: JobService,
+        private router: Router,
     ){}
     async ngOnInit() {
         this.dictionary = this.profileService.profileDictonary;
@@ -51,5 +52,9 @@ export class JobsComponent implements OnInit {
 
     switchListType(type:string){
         this.listType = type;
+    }
+
+    redirectToAddJob(){
+        this.router.navigate(['dashboard/job/new']);
     }
 }

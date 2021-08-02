@@ -187,7 +187,7 @@ export class AdminLayoutComponent implements OnInit,OnDestroy {
         color: 'noColorItemSelected',
         visibleSub: 'off',
         icon: 'work',
-        route: 'dashboard/jobs'
+        route: 'dashboard/job'
       },
       {
         title: 'Modelos de Canvas',

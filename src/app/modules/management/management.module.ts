@@ -39,8 +39,9 @@ import { UserFormComponent } from './pages/user-form/user-form.component';
 import { JobsComponent } from './pages/jobs/jobs.component'
 import { GridAllModule } from '@syncfusion/ej2-angular-grids';
 import { ModalNewJobComponent } from './components/modal-new-job/modal-new-job.component';
-import { JobFormComponentComponent } from './pages/job-form-component/job-form-component.component';
 import { JobFormComponent } from './pages/job-form/job-form.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,6 @@ import { JobFormComponent } from './pages/job-form/job-form.component';
     UserFormComponent,
     JobsComponent,
     ModalNewJobComponent,
-    JobFormComponentComponent,
     JobFormComponent
   ],
   imports: [
@@ -79,7 +79,9 @@ import { JobFormComponent } from './pages/job-form/job-form.component';
     ReactiveFormsModule,
     FormsModule,
     DashboardLayoutModule,
-    GridAllModule
+    GridAllModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports:[CanvasTemplateComponent],
   providers: [

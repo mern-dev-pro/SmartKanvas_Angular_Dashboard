@@ -5,17 +5,19 @@ import { HomeComponent } from './pages/home/home.component';
 import { UserFormComponent } from './pages/user-form/user-form.component';
 import { UsersComponent } from './pages/users/users.component';
 import { JobsComponent } from './pages/jobs/jobs.component';
-
+import { JobFormComponent } from './pages/job-form/job-form.component';
 const routes: Routes = [
   {
     path: '',
-    // component: HomeComponent,
     component: UsersComponent
   },
   {
-    path: 'jobs',
-    // component: HomeComponent,
+    path: 'job',
     component: JobsComponent
+  },
+  {
+    path: 'job/new',
+    component: JobFormComponent 
   },
   {
     path: 'list-user',

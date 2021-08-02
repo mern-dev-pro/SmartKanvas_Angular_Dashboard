@@ -1,1 +1,133 @@
-<p>job-form works!</p>
+<section class="dashboard-content form-page user-form">
+    <header
+    class="panel-header" fxLayout="row" fxLayout.xs="row wrap"
+    fxLayoutAlign="space-between center" fxLayoutAlign.xs="start center">
+    <div class="left" fxLayout="row">
+      <div fxLayout="row" class="container-back" fxLayoutAlign="start center" >
+        <mat-icon (click)="navigateBack()">arrow_back</mat-icon>
+        <h2>{{jobID ? 'Edição do trabalho' : 'Novo trabalho'}}</h2>
+      </div>
+    </div>
+  </header>
+
+  <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
+    <div class="right">
+      <mat-form-field appearance="outline" class="w-75">
+        <mat-label><span *ngIf="!this.job">*</span>Título</mat-label>
+        <input matInput formControlName="Title"  />
+        <mat-error
+          *ngIf="!jobForm.get('Title').valid &&
+          jobForm.get('Title').touched">
+          Campo obrigatório
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-75">
+        <mat-label><span *ngIf="!this.job">*</span>Descrição</mat-label>
+        <textarea matInput rows="5"></textarea>
+        <mat-error
+          *ngIf="!jobForm.get('Description').valid &&
+          jobForm.get('Description').touched">
+          Campo obrigatório
+        </mat-error>
+      </mat-form-field>
+
+      <div fxLayout="row" fxLayoutAlign="space-between start" class="w-75">
+        <div class="w-50 px-sm-left">
+          <mat-form-field appearance="outline"  class="w-100">
+            <mat-label><span *ngIf="!this.job">*</span>Tipo</mat-label>
+            <mat-select formControlName="Type">
+              <mat-option *ngFor="let type of types">{{type}}</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="!jobForm.get('Type').valid &&
+              jobForm.get('Type').touched">
+              Campo obrigatório
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="w-50 px-sm-right">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label><span *ngIf="!this.job">*</span>Status</mat-label>
+            <mat-select formControlName="Status">
+              <mat-option >tt</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="!jobForm.get('Status').valid &&
+              jobForm.get('Status').touched">
+              Campo obrigatório
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="space-between start" class="w-75">
+        <div class="w-50 px-sm-left">
+          <mat-form-field appearance="outline"  class="w-100">
+            <mat-label><span *ngIf="!this.job">*</span>Responsável</mat-label>
+            <mat-select formControlName="ResponsiveUser">
+              <mat-option >tt</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="!jobForm.get('ResponsiveUser').valid &&
+              jobForm.get('ResponsiveUser').touched">
+              Campo obrigatório
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="w-50 px-sm-right">
+          <div fxLayout="row" fxLayoutAlign="space-between start" class="w-100">
+            <div class="w-50 px-sm-left">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Início</mat-label>
+                <input matInput [matDatepicker]="picker1">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="w-50 px-sm-right">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Término</mat-label>
+                <input matInput [matDatepicker]="picker2">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="text-bold">Membros</p>
+        <div class="grid-list w-75">
+          <ejs-grid enableAdaptiveUI="true" height="100%">
+              <e-columns>
+                  <e-column width="180" field="Title" headerText="Nome"></e-column>
+                  <e-column width="180" field="Responsible" headerText="Papel"></e-column>
+                  <e-column width="180" field="Type" headerText="Executa tarefas?"></e-column>
+                  <e-column width="180" field="Status" headerText="Etiquetas"></e-column>
+                  <e-column width="180" field="label" headerText="Ações"></e-column>
+              </e-columns>
+          </ejs-grid>
+        </div>
+        <div class="text-center w-75 mt-sm">
+          <div class="btn-create-dynamic">
+            <button mat-fab class="new-dynamic">
+              <div fxLayout="row" fxLayoutAlign="center center">
+                <mat-icon>add</mat-icon>
+              </div>
+            </button>
+          </div>
+          <p class="mt-sm">Clique no botão acima para associar o primeiro membro a este trabalho.</p>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end start" class="w-75 mt-sm">
+        <button  mat-raised-button class="btn-card mx-sm p-sm" (click)="navigateBack()">Fechar</button>
+        <button  mat-raised-button class="btn-card btn-card-primary mx-sm p-sm">Salvar</button>
+        <button  mat-raised-button class="btn-card btn-card-primary mx-sm p-sm">Salvar e ir para o Canvas</button>
+      </div>
+    </div>
+  </form>
+</section>
+
