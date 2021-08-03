@@ -30,6 +30,8 @@ export class JobFormComponent implements OnInit {
     memberProfile: string;
     isValid:boolean;
     tags: number[];
+    ID: String;
+    Image: String;
   }
 
   @ViewChild('grid') public grid: GridComponent;
@@ -88,7 +90,6 @@ export class JobFormComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       this.memberData = result;
-      console.log(this.memberData);
       if(this.memberData){
         if (this.memberDataArray.findIndex( (item: any) => item.memberName === result.memberName ) > -1)
           return;
@@ -100,17 +101,28 @@ export class JobFormComponent implements OnInit {
   openDialogEdit(memberName: string): void {
     const dialogRef = this.dialog.open(ModalEditJobMemberComponent, {
       width: '600px',
-      height: '400px',
+      height: '450px',
       data: {
         memberName: this.memberDataArray.find((item) => item.memberName === memberName).memberName,
         memberProfile: this.memberDataArray.find((item) => item.memberName === memberName).memberProfile,
         isValid: this.memberDataArray.find((item) => item.memberName === memberName).isValid,
         tags: this.memberDataArray.find((item) => item.memberName === memberName).tags,
+        ID: this.memberDataArray.find((item) => item.memberName === memberName).ID,
+        Image: this.memberDataArray.find((item) => item.memberName === memberName).Image
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      if(result){
+        this.memberDataArray.find((item:any)=>item.ID === result.ID).memberProfile = result.memberProfile;
+        this.memberDataArray.find((item:any)=>item.ID === result.ID).isValid = result.isValid;
+        this.memberDataArray.find((item:any)=>item.ID === result.ID).tags = result.tags;
+        this.grid.refresh();
+      }
     });
   }
-
+  deleteMember(memberName:string){
+    console.log('Delete Member', memberName)
+    this.memberDataArray = this.memberDataArray.filter((item:any)=> item.memberName !== memberName);
+    this.grid.refresh();
+  }
 }

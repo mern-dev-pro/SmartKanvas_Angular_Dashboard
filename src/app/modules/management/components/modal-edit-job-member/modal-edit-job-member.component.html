@@ -1,5 +1,28 @@
 <h4 mat-dialog-title class="text-bold">Alteração de membro - Desenvolvimento do SmartKanvas</h4>
-<div class="text-center">
+<div class="text-center padding-sm">
+    <img src="../../../../assets/img/default_avatar.png" width="100"/>
     <p>{{data.memberName}}</p>
 </div>
+<div>
+    <mat-form-field appearance="outline" class="w-100">
+        <mat-label>* Perfil neste trabalho</mat-label>
+        <mat-select [(ngModel)]="data.memberProfile">
+          <mat-option *ngFor="let profile  of profiles" [value] = "profile.name" >{{profile.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
 
+      <div class="grid-slide-toggle-material"> 
+        <mat-slide-toggle [(ngModel)]="data.isValid">O usuário poderá executar tarefas neste trabalho?</mat-slide-toggle>
+      </div>
+  
+      <div class="my-sm">
+        <ng-select [(ngModel)]="data.tags" placeholder="Digite aqui as etiquetas deste medddmbro" [addTag]="true" [multiple]="true">
+          <ng-option *ngFor="let car of cars" [value]="car.name">{{car.name}}</ng-option>
+        </ng-select>
+      </div>
+      
+      <div mat-dialog-actions class="padding-sm">
+        <button type="button" mat-button [mat-dialog-close]="isClosed"(click)="onNoClick()">Fechar</button>
+        <button type="button" mat-button [mat-dialog-close]="data" title="Associa o usuário como membro do trabalho">Salvar</button>
+      </div>
+</div>

@@ -50,7 +50,6 @@ export class ModelAddJobMemberComponent implements OnInit {
         user => this.userService.formatUser(user)
       );
       this.datas = this.users;
-      console.log(this.datas);
     } catch(error){
       console.log(error)
     }
@@ -65,7 +64,6 @@ export class ModelAddJobMemberComponent implements OnInit {
   }
 
   setIDImage(event: any){
-    console.log('ppp', event.value);
     this.data.ID= this.datas.find((item: User) => item.UserName === event.value).ID;
     this.data.Image = this.datas.find((item: User) => item.UserName === event.value).Photo;
   }
