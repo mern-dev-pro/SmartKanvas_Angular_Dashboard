@@ -122,7 +122,7 @@
                     <button
                       type="button"
                       mat-menu-item
-                      [routerLink]="['/dashboard/user/']"
+                      (click)="openDialogEdit(data.memberName)"
                     >
                       Editar
                     </button>

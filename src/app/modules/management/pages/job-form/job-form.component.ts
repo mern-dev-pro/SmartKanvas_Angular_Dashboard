@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import {MatDialog} from '@angular/material/dialog';
 import { Job } from 'src/app/models/Job';
 import { ModelAddJobMemberComponent } from '../../components/model-add-job-member/model-add-job-member.component';
+import { ModalEditJobMemberComponent } from '../../components/modal-edit-job-member/modal-edit-job-member.component';
 import { GridComponent } from '@syncfusion/ej2-angular-grids';
 @Component({
   selector: 'app-job-form',
@@ -81,7 +82,9 @@ export class JobFormComponent implements OnInit {
     const dialogRef = this.dialog.open(ModelAddJobMemberComponent, {
       width: '600px',
       height: '400px',
-      data: {}
+      data: {
+        
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
       this.memberData = result;
@@ -92,6 +95,21 @@ export class JobFormComponent implements OnInit {
         this.memberDataArray.push(this.memberData)
         this.grid.refresh();
       }
+    });
+  }
+  openDialogEdit(memberName: string): void {
+    const dialogRef = this.dialog.open(ModalEditJobMemberComponent, {
+      width: '600px',
+      height: '400px',
+      data: {
+        memberName: this.memberDataArray.find((item) => item.memberName === memberName).memberName,
+        memberProfile: this.memberDataArray.find((item) => item.memberName === memberName).memberProfile,
+        isValid: this.memberDataArray.find((item) => item.memberName === memberName).isValid,
+        tags: this.memberDataArray.find((item) => item.memberName === memberName).tags,
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
     });
   }
 

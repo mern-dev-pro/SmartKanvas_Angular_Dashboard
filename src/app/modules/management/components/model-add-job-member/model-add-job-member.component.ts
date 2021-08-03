@@ -8,6 +8,8 @@ export interface Member {
   memberProfile: string;
   isValid:boolean;
   tags: number[];
+  ID:string;
+  Image: string;
 }
 
 @Component({
@@ -38,19 +40,8 @@ export class ModelAddJobMemberComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ModelAddJobMemberComponent>,
     private userService: UserService,
-    @Inject(MAT_DIALOG_DATA) public modalData: Member
+    @Inject(MAT_DIALOG_DATA) public data: Member
   ) {}
-
-  getDialogData(){
-    if(this.modalData.memberName && this.modalData.memberProfile && this.modalData.tags){
-      this.memberData = this.modalData;
-      console.log(this.memberData);
-      this.onNoClick();
-    }
-    else{
-
-    }
-  }
 
   async getWorkspaceUsers(workspaceId:string){
     try{
@@ -68,10 +59,15 @@ export class ModelAddJobMemberComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
-
   async ngOnInit(){
     this.workspaceId = localStorage.getItem('workspaceId');
     await this.getWorkspaceUsers(this.workspaceId);
+  }
+
+  setIDImage(event: any){
+    console.log('ppp', event.value);
+    this.data.ID= this.datas.find((item: User) => item.UserName === event.value).ID;
+    this.data.Image = this.datas.find((item: User) => item.UserName === event.value).Photo;
   }
 
 }
