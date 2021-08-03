@@ -1,34 +1,31 @@
 <h4 mat-dialog-title class="text-bold">Novo membro - Desenvolvimento do SmartKanvas</h4>
 <div mat-dialog-content style="overflow: visible;">
-  <form [formGroup]="memberForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="outline" class="w-100">
       <mat-label>* Usuário</mat-label>
-      <mat-select  formControlName = "Member">
-        <mat-option [value] = "" >ttt</mat-option>
+      <mat-select  [(ngModel)]="modalData.memberName">
+        <mat-option *ngFor="let data  of datas" [value] = "data.UserName" >{{data.UserName}}</mat-option>
       </mat-select>
     </mat-form-field>
   
     <mat-form-field appearance="outline" class="w-100">
       <mat-label>* Perfil neste trabalho</mat-label>
-      <mat-select  formControlName = "Profile">
-        <mat-option [value] = "" >ttt</mat-option>
+      <mat-select [(ngModel)]="modalData.memberProfile">
+        <mat-option *ngFor="let profile  of profiles" [value] = "profile.name" >{{profile.name}}</mat-option>
       </mat-select>
     </mat-form-field>
 
     <div class="grid-slide-toggle-material"> 
-      <mat-slide-toggle formControlName = "isValid">O usuário poderá executar tarefas neste trabalho?</mat-slide-toggle>
+      <mat-slide-toggle [(ngModel)]="modalData.isValid">O usuário poderá executar tarefas neste trabalho?</mat-slide-toggle>
     </div>
 
     <div class="my-sm">
-      <ng-select placeholder="Digite aqui as etiquetas deste medddmbro" formControlName = "Tags" [addTag]="true" [multiple]="true">
-        <ng-option *ngFor="let car of cars" [value]="car.id" style="padding: 5px;">{{car.name}}</ng-option>
+      <ng-select [(ngModel)]="modalData.tags" placeholder="Digite aqui as etiquetas deste medddmbro" [addTag]="true" [multiple]="true">
+        <ng-option *ngFor="let car of cars" [value]="car.name">{{car.name}}</ng-option>
       </ng-select>
     </div>
-
-  </form>
-
-</div>
-<div mat-dialog-actions>
-  <button type="button" mat-button (click)="onNoClick()">Fechar</button>
-  <button type="submit" cdkFocusInitial>Salvar</button>
+    
+    <div mat-dialog-actions>
+      <button type="button" mat-button [mat-dialog-close]="isClosed"(click)="onNoClick()">Fechar</button>
+      <button type="button" mat-button [mat-dialog-close]="modalData" title="Associa o usuário como membro do trabalho">Salvar</button>
+    </div>
 </div>

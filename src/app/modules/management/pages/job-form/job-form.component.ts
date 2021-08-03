@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import { Job } from 'src/app/models/Job';
 import { ModelAddJobMemberComponent } from '../../components/model-add-job-member/model-add-job-member.component';
+import { GridComponent } from '@syncfusion/ej2-angular-grids';
 @Component({
   selector: 'app-job-form',
   templateUrl: './job-form.component.html',
@@ -15,16 +16,25 @@ export class JobFormComponent implements OnInit {
   job: Job;
   types = ['Processo', 'Projeto', 'Registro de Oportunidade'];
   statuses = ['Em Planejamento', 'Em Execução', 'EnCerrado'];
-
+  rowMode = 'Vertical';
+ 
   cars = [
     { id: 1, name: 'Volvo' },
     { id: 2, name: 'Saab' },
     { id: 3, name: 'Opel' },
   ];
 
-  animal: string;
-  name: string;
-  
+  memberData:{
+    memberName: string;
+    memberProfile: string;
+    isValid:boolean;
+    tags: number[];
+  }
+
+  @ViewChild('grid') public grid: GridComponent;
+
+  memberDataArray: any[] = [];
+
   constructor(
     public fb: FormBuilder,
     public dialog: MatDialog,
@@ -32,7 +42,7 @@ export class JobFormComponent implements OnInit {
     private route: ActivatedRoute,
   ) { 
   }
-
+  
   ngOnInit(): void {
     this.jobID = this.route.snapshot.params['id'];
     this.setForm();
@@ -71,12 +81,17 @@ export class JobFormComponent implements OnInit {
     const dialogRef = this.dialog.open(ModelAddJobMemberComponent, {
       width: '600px',
       height: '400px',
-      data: {name: this.name, animal: this.animal}
+      data: {}
     });
-
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
+      this.memberData = result;
+      console.log(this.memberData);
+      if(this.memberData){
+        if (this.memberDataArray.findIndex( (item: any) => item.memberName === result.memberName ) > -1)
+          return;
+        this.memberDataArray.push(this.memberData)
+        this.grid.refresh();
+      }
     });
   }
 

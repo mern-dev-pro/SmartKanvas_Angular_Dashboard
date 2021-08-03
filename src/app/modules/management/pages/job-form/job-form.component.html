@@ -104,14 +104,38 @@
       <div>
         <p class="text-bold">Membros</p>
         <div class="grid-list w-75">
-          <ejs-grid enableAdaptiveUI="true" height="100%">
-              <e-columns>
-                  <e-column width="180" field="Title" headerText="Nome"></e-column>
-                  <e-column width="180" field="Responsible" headerText="Papel"></e-column>
-                  <e-column width="180" field="Type" headerText="Executa tarefas?"></e-column>
-                  <e-column width="180" field="Status" headerText="Etiquetas"></e-column>
-                  <e-column width="180" field="label" headerText="Ações"></e-column>
-              </e-columns>
+          <ejs-grid enableAdaptiveUI="true" height="100%" #grid  [dataSource]="memberDataArray" [rowRenderingMode]="rowMode">
+            <e-columns>
+              <e-column width="180" field="memberName" headerText="Nome">eee</e-column>
+              <e-column width="180" field="memberProfile" headerText="Papel"></e-column>
+              <e-column width="180" field="isValid" headerText="Executa tarefas?"></e-column>
+              <e-column width="180" field="tags" headerText="Etiquetas"></e-column>
+              <e-column width="180" headerText="Ações" >
+                <ng-template #template let-data>
+                  <button
+                    type="button"
+                    mat-icon-button [matMenuTriggerFor]="menu"
+                    aria-label="Menu Button"
+                    ><mat-icon>more_horiz</mat-icon>
+                  </button>
+                  <mat-menu #menu [yPosition]="'below'" >
+                    <button
+                      type="button"
+                      mat-menu-item
+                      [routerLink]="['/dashboard/user/']"
+                    >
+                      Editar
+                    </button>
+                    <button
+                      type="button"
+                      mat-menu-item
+                    >
+                      Excluir
+                    </button>
+                  </mat-menu>
+                </ng-template>
+              </e-column>
+            </e-columns>
           </ejs-grid>
         </div>
         <div class="text-center w-75 mt-sm">

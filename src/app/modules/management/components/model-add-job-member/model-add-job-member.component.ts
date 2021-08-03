@@ -1,10 +1,13 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/User';
 
-export interface DialogData {
-  animal: string;
-  name: string;
+export interface Member {
+  memberName: string;
+  memberProfile: string;
+  isValid:boolean;
+  tags: number[];
 }
 
 @Component({
@@ -13,48 +16,62 @@ export interface DialogData {
   styleUrls: ['./model-add-job-member.component.scss']
 })
 export class ModelAddJobMemberComponent implements OnInit {
-
-  memberForm: FormGroup;
-  selectedCar: number;
+  isClosed = false;
   cars = [
     { id: 1, name: 'Volvo' },
     { id: 2, name: 'Saab' },
     { id: 3, name: 'Opel' },
   ];
+  profiles = [
+    { id: 1, name: 'Administrador' },
+    { id: 2, name: 'Membro da Equipe' },
+    { id: 3, name: 'Visitante' },
+  ]
+  memberData: any
+
+  users: User[];
+  datas: User[];
+  filteredUsers: User[];
+  searchedUsers: User[];
+  workspaceId:string;
+
   constructor(
-    public fb: FormBuilder,
     public dialogRef: MatDialogRef<ModelAddJobMemberComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+    private userService: UserService,
+    @Inject(MAT_DIALOG_DATA) public modalData: Member
+  ) {}
 
-  setForm():void{
-    this.memberForm = this.fb.group({
-      Member: ['',Validators.required],
-      Profile: ['',Validators.required],
-      Tags: ['',Validators.required],
-      isValid: [false ,Validators.required]
-    });
-  }
-  updateForm():void{
-    // const job = this.job;
-    // this.jobForm = this.fb.group({
-      
-    // });
+  getDialogData(){
+    if(this.modalData.memberName && this.modalData.memberProfile && this.modalData.tags){
+      this.memberData = this.modalData;
+      console.log(this.memberData);
+      this.onNoClick();
+    }
+    else{
+
+    }
   }
 
-  onSubmit(){
-    // if(this.jobID){
-    //   console.log("Job is updated");
-    // }else {
-    //   console.log("Job is created");
-    // }
+  async getWorkspaceUsers(workspaceId:string){
+    try{
+      const { data } = <any>await this.userService.getAllUserSKByWorkspaceId(workspaceId);
+      this.users = data.getAllUserSKByWorkspaceId.map(
+        user => this.userService.formatUser(user)
+      );
+      this.datas = this.users;
+      console.log(this.datas);
+    } catch(error){
+      console.log(error)
+    }
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  ngOnInit(): void {
-    this.setForm();
+  async ngOnInit(){
+    this.workspaceId = localStorage.getItem('workspaceId');
+    await this.getWorkspaceUsers(this.workspaceId);
   }
 
 }

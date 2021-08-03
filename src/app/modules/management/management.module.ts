@@ -45,6 +45,7 @@ import { JobFormComponent } from './pages/job-form/job-form.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ModelAddJobMemberComponent } from './components/model-add-job-member/model-add-job-member.component';
+import { ModalEditJobMemberComponent } from './components/modal-edit-job-member/modal-edit-job-member.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { ModelAddJobMemberComponent } from './components/model-add-job-member/mo
     ModalNewJobComponent,
     JobFormComponent,
     ModelAddJobMemberComponent,
+    ModalEditJobMemberComponent,
   ],
   imports: [
     CommonModule,
