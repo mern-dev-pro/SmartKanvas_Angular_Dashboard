@@ -20,3 +20,28 @@ export interface Job {
     UpdatedByUser: any[];
     DeletedByUser: any[];
 }
+
+export interface InputJobSave {
+    Title: String;
+    Description: String;
+    StartDate: String;
+    FinishDate: String;
+    ActualFinishDate: String;
+    JobStatusDate: String;
+    JSonParameters: JSON;
+    WorkspaceCode: String;
+    JobTypeCode: String;
+    JobStatusCode: String;
+    ResponsibleUserCode: String;
+}
+
+export interface InputJobUpdate {
+    Title: String;
+    Description: String;
+    StartDate: String;
+    FinishDate: String;
+    ActualFinishDate: String;
+    JobStatusDate: String;
+    JSonParameters: JSON;
+    ResponsibleUser: String;
+}
