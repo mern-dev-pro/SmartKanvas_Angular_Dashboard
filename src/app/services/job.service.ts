@@ -26,10 +26,10 @@ export class JobService {
                         JobStatusDate
                         CreatedDate
                         LastUpdate
-                        DeletedDate   
+                        DeletedDate
                         JSonTimeline
                         JSonTags
-                        JSonParameters 
+                        JSonParameters
                         Workspace {
                             ID
                             WorkspaceName
@@ -115,7 +115,7 @@ export class JobService {
         return this.apollo.query(
             {
                 query:gql `query($id: ID!){
-                    getAllJobStatus(workpaceCode: $id){
+                    getAllJobStatus(workspaceCode: $id){
                         ID
                         Status
                         Position
@@ -127,7 +127,7 @@ export class JobService {
                 }`,
                 variables:{
                     id: workspaceID
-                }                    
+                }
             }
         )
     }
@@ -150,7 +150,7 @@ export class JobService {
                 }`,
                 variables:{
                     id: workspaceID
-                }                    
+                }
             }
         )
     }
