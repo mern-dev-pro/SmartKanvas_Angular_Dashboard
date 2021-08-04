@@ -1,11 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
-import { Job } from 'src/app/models/Job';
+import { Job} from 'src/app/models/Job';
+import { User } from 'src/app/models/User';
 import { ModelAddJobMemberComponent } from '../../components/model-add-job-member/model-add-job-member.component';
 import { ModalEditJobMemberComponent } from '../../components/modal-edit-job-member/modal-edit-job-member.component';
 import { GridComponent } from '@syncfusion/ej2-angular-grids';
+import { JobService } from 'src/app/services/job.service';
+import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component'; 
+import { UserService } from 'src/app/services/user.service';
+
 @Component({
   selector: 'app-job-form',
   templateUrl: './job-form.component.html',
@@ -15,9 +20,11 @@ export class JobFormComponent implements OnInit {
   jobID:string;
   jobForm: FormGroup;
   job: Job;
-  types = ['Processo', 'Projeto', 'Registro de Oportunidade'];
-  statuses = ['Em Planejamento', 'Em Execução', 'EnCerrado'];
+  types: any[] = [];
+  statuses:any[] = [];
   rowMode = 'Vertical';
+  jobstatusArray: any;
+  users: User[];
  
   cars = [
     { id: 1, name: 'Volvo' },
@@ -42,13 +49,31 @@ export class JobFormComponent implements OnInit {
     public fb: FormBuilder,
     public dialog: MatDialog,
     private router: Router,
+    private userService: UserService,
     private route: ActivatedRoute,
+    private jobService: JobService,
   ) { 
   }
   
   ngOnInit(): void {
     this.jobID = this.route.snapshot.params['id'];
     this.setForm();
+    const workspaceID = localStorage.getItem('workspaceId')
+    this.jobService.getAllJobStatus(workspaceID).subscribe(
+      (result:any) => {
+        if(result){
+          this.statuses = result.data.getAllJobStatus
+        }
+      }
+    );
+    this.jobService.getAllJobType(workspaceID).subscribe(
+      (result:any) => {
+        if(result){
+          this.types = result.data.getAllJobType
+        }
+      }
+    )
+    this.getWorkspaceUsers(workspaceID);
   }
   navigateBack(){
     this.router.navigate(['dashboard/job']);
@@ -58,28 +83,46 @@ export class JobFormComponent implements OnInit {
     this.jobForm = this.fb.group({
       Title: ['',Validators.required],
       Description: ['',Validators.required],
-      Type: ['',Validators.required],
-      Status: ['',Validators.required],
-      ResponsiveUser: ['',Validators.required],
+      Type: [''],
+      Status: [''],
+      ResponsiveUser: [''],
       StartDate: ['',Validators.required],
       EndDate: ['',Validators.required],
       Tags: ['', Validators.required]
     });
   }
-  updateForm():void{
-    const job = this.job;
-    this.jobForm = this.fb.group({
-      
-    });
-  }
-
   onSubmit(){
     if(this.jobID){
       console.log("Job is updated");
     }else {
       console.log("Job is created");
+      this.createJob();
     }
   }
+  
+  createJob(){
+    const {Title, Description, Type, Status, ResponsiveUser, StartDate, EndDate, Tags} = this.jobForm.value;
+    const responsiveUserID = this.users.find((item: any) => item.UserName = ResponsiveUser).ID;
+    const JobTypeCode = this.types.find((item: any) => item.Title = Type).ID;
+    const JobStatusCode = this.statuses.find((item: any) => item.Status = Status).ID;
+    console.log(responsiveUserID, JobTypeCode, JobStatusCode );
+    const InputJob:any = {
+      Title,
+      Description,
+      StartDate,
+      FinishDate: EndDate,
+      WorkspaceCode: localStorage.getItem('workspaceId'),
+      JobTypeCode,
+      JobStatusCode,
+      ResponsibleUserCode:responsiveUserID,
+    }
+    this.jobService.createNewJob(InputJob).subscribe(
+      (res:any) => {
+        console.log(res)
+      }
+    )
+  }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(ModelAddJobMemberComponent, {
       width: '600px',
@@ -120,9 +163,30 @@ export class JobFormComponent implements OnInit {
       }
     });
   }
+  onClickMemberDelete(memberName:string){
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        message: `Confirma a exclusão do membro do trabalho?`
+      }
+    })
+    dialogRef.afterClosed().subscribe((result:any)=> {
+      if(result === true) {
+        this.deleteMember(memberName);
+      }
+    });
+  }
   deleteMember(memberName:string){
-    console.log('Delete Member', memberName)
     this.memberDataArray = this.memberDataArray.filter((item:any)=> item.memberName !== memberName);
     this.grid.refresh();
+  }
+  async getWorkspaceUsers(workspaceId:string){
+    try{
+      const { data } = <any>await this.userService.getAllUserSKByWorkspaceId(workspaceId);
+      this.users = data.getAllUserSKByWorkspaceId.map(
+        user => this.userService.formatUser(user)
+      );     
+    } catch(error){
+      console.log(error)
+    }
   }
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { take } from 'rxjs/operators';
-import { Job } from '../models/Job';
+import { Job, InputJobSave, InputJobUpdate } from '../models/Job';
 import * as moment from 'moment';
 import { JsonpClientBackend } from '@angular/common/http';
 
@@ -93,5 +93,65 @@ export class JobService {
             DeletedByUser: job.DeletedByUser,
         }
         return formatedJob
+    }
+    createNewJob(data: any){
+        return this.apollo.mutate({
+            mutation: gql`
+                mutation($input: InputJobSave!){
+                    createJob(input: $input){
+                        Title
+                        Description
+                        StartDate
+                        FinishDate
+                    }
+                }
+            `,
+            variables:{
+                input: data
+            }
+        })
+    }
+    getAllJobStatus(workspaceID:string){
+        return this.apollo.query(
+            {
+                query:gql `query($id: ID!){
+                    getAllJobStatus(workpaceCode: $id){
+                        ID
+                        Status
+                        Position
+                        TagControl
+                        Workspace{
+                            ID
+                        }
+                    }
+                }`,
+                variables:{
+                    id: workspaceID
+                }                    
+            }
+        )
+    }
+    getAllJobType(workspaceID:string){
+        return this.apollo.query(
+            {
+                query:gql `query($id: ID!){
+                    getAllJobType(WorkspaceCode: $id){
+                        ID
+                        Title
+                        Description
+                        IsActive
+                        Image
+                        TagControl
+                        JSonTimeline
+                        Workspace{
+                            ID
+                        }
+                    }
+                }`,
+                variables:{
+                    id: workspaceID
+                }                    
+            }
+        )
     }
 }

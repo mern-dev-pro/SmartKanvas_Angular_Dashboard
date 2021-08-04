@@ -41,7 +41,7 @@
           <mat-form-field appearance="outline"  class="w-100">
             <mat-label><span *ngIf="!this.job">*</span>Tipo</mat-label>
             <mat-select formControlName="Type">
-              <mat-option *ngFor="let type of types" [value]="type">{{type}}</mat-option>
+              <mat-option *ngFor="let type of types" [value]="type.Title">{{type.Title}}</mat-option>
             </mat-select>
             <mat-error
               *ngIf="!jobForm.get('Type').valid &&
@@ -54,7 +54,7 @@
           <mat-form-field appearance="outline" class="w-100">
             <mat-label><span *ngIf="!this.job">*</span>Status</mat-label>
             <mat-select formControlName="Status">
-              <mat-option *ngFor="let status of statuses" [value]="status" >{{status}}</mat-option>
+              <mat-option *ngFor="let status of statuses" [value]="status.Status" >{{status.Status}}</mat-option>
             </mat-select>
             <mat-error
               *ngIf="!jobForm.get('Status').valid &&
@@ -70,7 +70,7 @@
           <mat-form-field appearance="outline"  class="w-100">
             <mat-label><span *ngIf="!this.job">*</span>Responsável</mat-label>
             <mat-select formControlName="ResponsiveUser">
-              <mat-option *ngFor="let member of memberDataArray" [value]="member.memberName" >{{member.memberName}}</mat-option>
+              <mat-option *ngFor="let user of users" [value]="user.UserName" >{{user.UserName}}</mat-option>
             </mat-select>
             <mat-error
               *ngIf="!jobForm.get('ResponsiveUser').valid &&
@@ -129,7 +129,7 @@
                     <button
                       type="button"
                       mat-menu-item
-                      (click)="deleteMember(data.memberName)"
+                      (click)="onClickMemberDelete(data.memberName)"
                     >
                       Excluir
                     </button>
