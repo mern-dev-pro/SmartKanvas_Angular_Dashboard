@@ -169,4 +169,21 @@ export class JobService {
             }
         })
     }
+    updateJob(input: InputJobUpdate, id: string, workspaceCode: string){
+        this.apollo.mutate({
+            mutation: gql`
+                mutation($input: InputJobUpdate, $id: ID!, $workspaceCode: ID!){
+                    updateJob(input: $input, id:  $id, workspaceCode: $workspaceCode){
+                        ID
+                        JobName
+                    }
+                }
+            `,
+            variables:{
+                input:input,
+                id: id,
+                workspaceCode: workspaceCode
+            }
+        })
+    }
 }
