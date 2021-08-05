@@ -63,7 +63,7 @@ export class JobsComponent implements OnInit {
     deleteJob(id:string){
         const dialogRef = this.dialog.open(ConfirmDialogComponent, {
             data: {
-              message: `Este usuário será desativado. Confirma a operação?`
+              message: `Este trabalho será excluído. Confirma a operação?`
             }
         })
         dialogRef.afterClosed().subscribe((result:any)=> {
