@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { ProfileService } from 'src/app/services/profile.service';
 import SKFilter from 'src/app/helpers/SKFilter';
 import { Job } from 'src/app/models/Job';
 import { JobService } from 'src/app/services/job.service';
+import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
     selector: 'app-jobs',
@@ -26,6 +28,7 @@ export class JobsComponent implements OnInit {
         private profileService: ProfileService,
         private jobservice: JobService,
         private router: Router,
+        private dialog: MatDialog,
     ){}
     async ngOnInit() {
         this.dictionary = this.profileService.profileDictonary;
@@ -56,5 +59,17 @@ export class JobsComponent implements OnInit {
 
     redirectToAddJob(){
         this.router.navigate(['dashboard/job/new']);
+    }
+    deleteJob(id:string){
+        const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+            data: {
+              message: `Este usuário será desativado. Confirma a operação?`
+            }
+        })
+        dialogRef.afterClosed().subscribe((result:any)=> {
+        if(result === true) {
+            this.jobservice.deleteJob(id, this.workspaceId);
+        }
+        });
     }
 }

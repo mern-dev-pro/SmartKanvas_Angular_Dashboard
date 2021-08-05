@@ -154,4 +154,19 @@ export class JobService {
             }
         )
     }
+    deleteJob(id: string, workspaceId:string){
+        console.log(id, workspaceId);
+        
+        return this.apollo.mutate({
+            mutation: gql`
+                mutation($id:ID!, $workspaceCode:ID!){
+                    deleteJob(id: $id, workspaceCode: $workspaceCode)
+                }
+            `,
+            variables:{
+                id: id,
+                workspaceCode: workspaceId
+            }
+        })
+    }
 }

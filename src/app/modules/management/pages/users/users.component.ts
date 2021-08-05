@@ -223,7 +223,7 @@ export class UsersComponent implements OnInit {
           message: `Usuário ${messageStatus} com sucesso!`,
           type: 'success'
         })
-      })
+    })
 
   }
 
@@ -239,10 +239,6 @@ export class UsersComponent implements OnInit {
         },
         (error) => {
           console.log(error)
-          // this.snackBarService.showNotification({
-          //   message: `Usuário ${messageStatus} com sucesso!`,
-          //   type: 'success'
-          // })
         }
       )
   }
