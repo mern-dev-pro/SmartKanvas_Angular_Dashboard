@@ -67,9 +67,13 @@ export class JobsComponent implements OnInit {
             }
         })
         dialogRef.afterClosed().subscribe((result:any)=> {
-        if(result === true) {
-            this.jobservice.deleteJob(id, this.workspaceId);
-        }
+            if(result === true) {
+                this.jobservice.deleteJob(id, this.workspaceId).subscribe(
+                    (result:any)=>{
+                        console.log(result);
+                    }
+                );
+            }
         });
     }
 }
