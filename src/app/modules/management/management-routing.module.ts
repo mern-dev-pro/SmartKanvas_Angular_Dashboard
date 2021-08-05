@@ -20,6 +20,10 @@ const routes: Routes = [
     component: JobFormComponent 
   },
   {
+    path: 'job/:id/edit',
+    component: JobFormComponent 
+  },
+  {
     path: 'list-user',
     redirectTo:''
   },

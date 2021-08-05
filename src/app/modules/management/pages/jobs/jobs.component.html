@@ -12,11 +12,33 @@
             <ejs-grid enableAdaptiveUI="true" height="100%" #adaptive [dataSource]="data">
                 <e-columns>
                     <e-column width="180" field="Title" headerText="Nome"></e-column>
-                    <e-column width="180" field="Responsible" headerText="Responsável"></e-column>
-                    <e-column width="180" field="Type" headerText="Tipo"></e-column>
-                    <e-column width="180" field="Status" headerText="Status"></e-column>
-                    <e-column width="180" field="label" headerText="Etiquetas"></e-column>
-                    <e-column width="180" field="Tags" headerText="Options"></e-column>
+                    <e-column width="180" field="ResponsibleUser.UserName" headerText="Responsável"></e-column>
+                    <e-column width="180" field="JobType.Title" headerText="Tipo"></e-column>
+                    <e-column width="180" field="JobStatus.ID" headerText="Status"></e-column>
+                    <e-column width="180" field="JSonTags" headerText="Etiquetas"></e-column>
+                    <e-column width="180" headerText="Options">
+                        <ng-template #template let-data>
+                            <button
+                                type="button"
+                                mat-icon-button [matMenuTriggerFor]="menu"
+                                aria-label="Menu Button"
+                            >
+                                <mat-icon>more_horiz</mat-icon>
+                            </button>
+                            <mat-menu #menu [yPosition]="'below'" >
+                                <button
+                                    mat-menu-item
+                                    [routerLink]="['/dashboard/job/',data.ID,'edit']"
+                                >
+                                    Editar
+                                </button>
+                                <button mat-menu-item>Viusalizar Canvas</button>
+                                <button mat-menu-item>Mudra Status</button>
+                                <button mat-menu-item>Excluir</button>
+                                <button mat-menu-item>Linha do tempo</button>
+                            </mat-menu>
+                        </ng-template>
+                    </e-column>
                 </e-columns>
             </ejs-grid>
         </div>
