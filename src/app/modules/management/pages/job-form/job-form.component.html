@@ -1,5 +1,5 @@
 <section class="dashboard-content form-page user-form">
-  <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
+  <form *ngIf="jobForm" [formGroup]="jobForm" (ngSubmit)="onSubmit()">
     <header
       class="panel-header" fxLayout="row" fxLayout.xs="row wrap"
       fxLayoutAlign="space-between center" fxLayoutAlign.xs="start center"

@@ -170,12 +170,11 @@ export class JobService {
         })
     }
     updateJob(input: InputJobUpdate, id: string, workspaceCode: string){
-        this.apollo.mutate({
+        return this.apollo.mutate({
             mutation: gql`
                 mutation($input: InputJobUpdate, $id: ID!, $workspaceCode: ID!){
                     updateJob(input: $input, id:  $id, workspaceCode: $workspaceCode){
                         ID
-                        JobName
                     }
                 }
             `,
@@ -185,5 +184,41 @@ export class JobService {
                 workspaceCode: workspaceCode
             }
         })
+    }
+    getJobByID(id: string){
+        return this.apollo.query({
+            query: gql`
+                query($id: ID!){
+                    getJob(id: $id){
+                        Title
+                        Description,
+                        StartDate,
+                        FinishDate,
+                    }
+                }
+            `,
+            variables: {
+                id: id
+            }
+        })
+    }
+    createJobMember(input: any, workspaceCode: string){
+        return this.apollo.mutate({
+            mutation: gql`
+                mutation($input :InputjobMemberSave!, $workspaceCode : ID!){
+                    createJobMember(input: $input, workspaceCode: $workspaceCode){
+                        ID
+                        JobProfileTitle
+                        CanAllocateTasks
+                        MemberName
+                    }
+                }
+            `,
+            variables: {
+                input: input,
+                workspaceCode: workspaceCode
+            }
+        })
+
     }
 }

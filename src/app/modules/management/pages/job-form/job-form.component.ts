@@ -57,7 +57,12 @@ export class JobFormComponent implements OnInit {
   
   ngOnInit(): void {
     this.jobID = this.route.snapshot.params['id'];
-    this.setForm();
+    if(this.jobID){
+      this.getJobById(this.jobID);
+    }
+    else{
+      this.setForm("", "");
+    }
     const workspaceID = localStorage.getItem('workspaceId')
     this.jobService.getAllJobStatus(workspaceID).subscribe(
       (result:any) => {
@@ -79,13 +84,13 @@ export class JobFormComponent implements OnInit {
     this.router.navigate(['dashboard/job']);
   }
 
-  setForm():void{
+  setForm(title:string, description: string):void{
     this.jobForm = this.fb.group({
-      Title: ['',Validators.required],
-      Description: ['',Validators.required],
+      Title: [title, Validators.required],
+      Description: [description, Validators.required],
       Type: [''],
       Status: [''],
-      ResponsiveUser: [''],
+      ResponsiveUser: ['', Validators.required],
       StartDate: ['',Validators.required],
       EndDate: ['',Validators.required],
       Tags: ['', Validators.required]
@@ -94,6 +99,7 @@ export class JobFormComponent implements OnInit {
   onSubmit(){
     if(this.jobID){
       console.log("Job is updated");
+      this.updateJob();
     }else {
       console.log("Job is created");
       this.createJob();
@@ -105,7 +111,6 @@ export class JobFormComponent implements OnInit {
     const responsiveUserID = this.users.find((item: any) => item.UserName = ResponsiveUser).ID;
     const JobTypeCode = this.types.find((item: any) => item.Title = Type).ID;
     const JobStatusCode = this.statuses.find((item: any) => item.Status = Status).ID;
-    console.log(responsiveUserID, JobTypeCode, JobStatusCode );
     const InputJob:any = {
       Title,
       Description,
@@ -119,6 +124,25 @@ export class JobFormComponent implements OnInit {
     this.jobService.createNewJob(InputJob).subscribe(
       (res:any) => {
         console.log(res)
+      }
+    )
+  }
+
+  updateJob(){
+    const workspaceID = localStorage.getItem('workspaceId')
+    const {Title, Description,ResponsiveUser, StartDate, EndDate} = this.jobForm.value;
+    const responsiveUserID = this.users.find((item: any) => item.UserName = ResponsiveUser).ID;
+    console.log(responsiveUserID);
+    const InputJob:any = {
+      Title,
+      Description,
+      StartDate,
+      FinishDate: EndDate,
+      ResponsibleUser:responsiveUserID,
+    }
+    this.jobService.updateJob(InputJob, this.jobID, workspaceID).subscribe(
+      (result:any) => {
+        console.log(result);
       }
     )
   }
@@ -188,5 +212,25 @@ export class JobFormComponent implements OnInit {
     } catch(error){
       console.log(error)
     }
+  }
+
+  getJobById(id: string){
+    this.jobService.getJobByID(id).subscribe(
+      (result:any)=>{
+        console.log(result); 
+        this.setForm(result.data.getJob.Title, result.data.getJob.Description);
+      }
+    )
+  }
+  addJobMember(){
+    this.memberDataArray.map((member:any)=>{
+      // const input = {
+      //   JobProfileTitle: member,
+      //   CanAllocateTasks: ,
+      //   UserCode:,
+      //   JobCode: ,
+      // }
+      // this.jobService.createJobMember()
+    })
   }
 }
