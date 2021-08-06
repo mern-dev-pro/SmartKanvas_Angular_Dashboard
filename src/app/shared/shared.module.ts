@@ -34,7 +34,7 @@ import { ImageInputComponent } from './components/image-input/image-input.compon
     TimelineCardComponent,
     TimelineItemComponent,
     CardComponent,
-    ImageInputComponent
+    ImageInputComponent,
   ],
   imports: [
     CommonModule,

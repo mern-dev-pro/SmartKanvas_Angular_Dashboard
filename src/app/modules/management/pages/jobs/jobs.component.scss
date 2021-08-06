@@ -1,0 +1,72 @@
+@import "~src/styles/variables.scss";
+.card {
+  width: 280px;
+  height: 212px;
+  padding: 0;
+  -webkit-box-shadow: 3px 3px 5px rgb(0 0 0 / 35%);
+  box-shadow: 3px 3px 5px rgb(0 0 0 / 35%);
+  border-radius: 0;
+}
+
+.card mat-toolbar {
+  background-color: $dark-blue2;
+  height: 32px;
+  padding: 0;
+  -webkit-box-shadow: 3px 3px 5px rgb(0 0 0 / 35%);
+  box-shadow: 3px 3px 5px rgb(0 0 0 / 35%);
+}
+
+.card [mat-icon-button] mat-icon {
+  color: #fff;
+}
+
+.card .mat-card-image {
+  margin: 0;
+  width: 104px;
+  height: 72px;
+  object-fit: cover;
+  -webkit-box-shadow: 3px 3px 5px rgb(0 0 0 / 35%);
+  box-shadow: 3px 3px 5px rgb(0 0 0 / 35%);
+}
+.card .mat-card-image:first-child {
+  margin-top: 0;
+}
+
+mat-card-content strong {
+  font-size: 14px;
+}
+
+mat-card-content p,
+.card mat-card-actions button span {
+  font-size: 11px;
+}
+mat-card-content p {
+  margin-bottom: 0;
+}
+.card-body {
+  padding: 15px 10px 5px 10px;
+}
+
+.card mat-card-actions button {
+  min-width: 100px;
+  height: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card mat-card-actions .btn-warn {
+  background-color: #ee7476;
+  font-size: 11px;
+  font-weight: normal;
+}
+
+.pending {
+  display: flex;
+  justify-content: space-between;
+
+  p {
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+  }
+}

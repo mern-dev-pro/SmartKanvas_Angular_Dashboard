@@ -14,8 +14,7 @@
     </button>
   </mat-toolbar>
   <div class="card-body" fxLayoutAlign="row" fxLayoutGap="15px">
-    <img class="mat-card-image"
-      mat-card-sm-image [src]="user.Photo || '../../../../assets/img/preview_default.svg'" />
+    <img class="mat-card-image" mat-card-sm-image [src]="user.Photo || '../../../../assets/img/preview_default.svg'" />
     <mat-card-content>
       <p><strong>{{user.UserName}}</strong></p>
       <p>{{user.Email}}</p>

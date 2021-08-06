@@ -43,14 +43,40 @@
             </ejs-grid>
         </div>
         <div class="cards-list" *ngIf="listType == 'cards'">
-            <app-card-users
-              <!-- *ngFor="let user of data"
-              [user]="user"
-              (changeIsActive)="changeUserStatus($event)"
-              (resendInvite)="openResendInviteDialog($event)"
-              (delete)="openDeleteDialog($event)" -->
+            <!-- <app-card-job
+                *ngFor="let job of data"
             >
-            </app-card-users>
+            </app-card-job> -->
+            <div *ngFor="let item of data">
+                <mat-card class="card" fxLayout="column">
+                    <mat-toolbar fxLayout="row" fxLayoutAlign="flex-end" color="accent">
+                        <button mat-icon-button aria-label="Menu Button" [matMenuTriggerFor]="menu">
+                            <mat-icon>more_horiz</mat-icon>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item [routerLink]="['/dashboard/job/',item.ID,'edit']">Editar</button>
+                                <button mat-menu-item>Viusalizar Canvas</button>
+                                <button mat-menu-item>Mudra Status</button>
+                                <button mat-menu-item (click)="deleteJob(item.ID)">Excluir</button>
+                                <button mat-menu-item>Linha do tempo</button>
+                            </mat-menu>
+                        </button>
+                    </mat-toolbar>
+                    <div class="card-body" fxLayoutAlign="row" fxLayoutGap="15px">
+                        <img class="mat-card-image" mat-card-sm-image [src]="item.JobType.Image || '../../../../../assets/img/preview_default.svg'" />
+                        <mat-card-content>
+                            <p>Nome:<strong>{{item.Title}}</strong></p>
+                            <p>Responsável: {{item.ResponsibleUser.UserName}}</p>
+                            <p>Description: {{item.Description}}</p>
+                            <p>Tipo: {{item.JobType.Title}}</p>
+                        </mat-card-content>
+                    </div>
+                    <mat-card-actions>
+                        <div style="background-color: blueviolet;">
+                            <p>{{item.JSonTags}}</p>
+                        </div>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
         </div>
     </div>
 </app-management-pages-template>

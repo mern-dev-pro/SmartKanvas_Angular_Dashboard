@@ -46,8 +46,8 @@ export class JobsComponent implements OnInit {
             this.jobs = data.getAllJob.map(
                 job => this.jobservice.formatJob(job)
             );
-            this.data = this.jobs;            
-            console.log("Data for Job", data);
+            this.data = this.jobs; 
+            console.log(this.data);           
         }catch(err){
             console.log(err)
         }
@@ -70,7 +70,7 @@ export class JobsComponent implements OnInit {
             if(result === true) {
                 this.jobservice.deleteJob(id, this.workspaceId).subscribe(
                     (result:any)=>{
-                        console.log(result);
+                        this.router.navigate(['dashboard/job']);
                     }
                 );
             }
