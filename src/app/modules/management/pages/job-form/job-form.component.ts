@@ -199,10 +199,12 @@ export class JobFormComponent implements OnInit {
       }
     });
   }
+  
   deleteMember(memberName:string){
     this.memberDataArray = this.memberDataArray.filter((item:any)=> item.memberName !== memberName);
     this.grid.refresh();
   }
+
   async getWorkspaceUsers(workspaceId:string){
     try{
       const { data } = <any>await this.userService.getAllUserSKByWorkspaceId(workspaceId);
@@ -222,15 +224,10 @@ export class JobFormComponent implements OnInit {
       }
     )
   }
-  addJobMember(){
-    this.memberDataArray.map((member:any)=>{
-      // const input = {
-      //   JobProfileTitle: member,
-      //   CanAllocateTasks: ,
-      //   UserCode:,
-      //   JobCode: ,
-      // }
-      // this.jobService.createJobMember()
-    })
+
+  createJobMembers(jobId:string){
+    const input = {
+      
+    }
   }
 }
