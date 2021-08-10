@@ -123,7 +123,8 @@ export class JobFormComponent implements OnInit {
     }
     this.jobService.createNewJob(InputJob).subscribe(
       (res:any) => {
-        console.log(res)
+        console.log(res);
+        this.createJobMembers(res.data.createJob.ID);
       }
     )
   }
@@ -226,8 +227,14 @@ export class JobFormComponent implements OnInit {
   }
 
   createJobMembers(jobId:string){
-    const input = {
-      
-    }
+    this.memberDataArray.map((member: any) => {
+      const input = {
+        JobProfileTitle: member.memberProfile,
+        CanAllocateTasks: member.isValid,
+        UserCode: this.users.find((item: any) => item.UserName = member.memberName).ID,
+        JobCode: jobId
+      }
+      this.jobService.createJobMember(input, localStorage.getItem('workspaceId'));
+    })
   }
 }
