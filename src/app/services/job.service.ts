@@ -69,7 +69,6 @@ export class JobService {
         }).toPromise()
     }
     formatJob(job: any): Job{
-        const workspaceId = localStorage.getItem('workspaceId');
         const formatedJob: Job = {
             ID:job.ID,
             Title: job.Title,
@@ -99,6 +98,7 @@ export class JobService {
             mutation: gql`
                 mutation($input: InputJobSave!){
                     createJob(input: $input){
+                        ID
                         Title
                         Description
                         StartDate
@@ -185,6 +185,7 @@ export class JobService {
             }
         })
     }
+   
     getJobByID(id: string){
         return this.apollo.query({
             query: gql`
@@ -221,4 +222,20 @@ export class JobService {
         })
 
     }
+    deleteJobMember(jobMemberCode: string, workspaceCode: string){
+        return this.apollo.mutate({
+            mutation: gql`
+                mutation($jobMemberCode: ID!, $workspaceCode: ID!){
+                    deleteJobMember(jobMemberCode: $jobMemberCode, workspaceCode: $workspaceCode){
+
+                    }
+                }
+            `,
+            variables:{
+                jobMemberCode: jobMemberCode,
+                workspaceCode: workspaceCode
+            }
+        })
+    }
+    
 }

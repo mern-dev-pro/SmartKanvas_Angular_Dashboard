@@ -204,6 +204,7 @@ export class JobFormComponent implements OnInit {
   deleteMember(memberName:string){
     this.memberDataArray = this.memberDataArray.filter((item:any)=> item.memberName !== memberName);
     this.grid.refresh();
+    this.jobService.deleteJobMember(this.memberDataArray.filter((item:any)=> item.memberName == memberName)[0].ID, localStorage.getItem('workspaceId'))
   }
 
   async getWorkspaceUsers(workspaceId:string){
@@ -234,7 +235,8 @@ export class JobFormComponent implements OnInit {
         UserCode: this.users.find((item: any) => item.UserName = member.memberName).ID,
         JobCode: jobId
       }
-      this.jobService.createJobMember(input, localStorage.getItem('workspaceId'));
+      this.jobService.createJobMember(input, localStorage.getItem('workspaceId')).subscribe((result: any) => { console.log(result);
+      });
     })
   }
 }
